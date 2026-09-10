@@ -1,0 +1,86 @@
+{
+  "relevance": {
+    "exact_match_rate": 0.75,
+    "within_1_rate": 0.75,
+    "spearman_rho": 0.0,
+    "spearman_pvalue": 1.0,
+    "quadratic_weighted_kappa": 0.0
+  },
+  "groundedness": {
+    "exact_match_rate": 0.0,
+    "within_1_rate": 1.0,
+    "spearman_rho": 0.0,
+    "spearman_pvalue": 0.0,
+    "quadratic_weighted_kappa": 0.0
+  },
+  "actionability": {
+    "exact_match_rate": 0.8,
+    "within_1_rate": 0.8,
+    "spearman_rho": 0.612,
+    "spearman_pvalue": 0.0,
+    "quadratic_weighted_kappa": 0.6
+  },
+  "tone_brand_fit": {
+    "exact_match_rate": 0.15,
+    "within_1_rate": 1.0,
+    "spearman_rho": 0.0,
+    "spearman_pvalue": 1.0,
+    "quadratic_weighted_kappa": 0.0
+  },
+  "safety": {
+    "exact_match_rate": 1.0,
+    "within_1_rate": 1.0,
+    "spearman_rho": 1.0,
+    "spearman_pvalue": 0.0,
+    "quadratic_weighted_kappa": 1.0
+  },
+  "macro_averages": {
+    "mean_exact_match": 0.54,
+    "mean_within_1": 0.91,
+    "mean_spearman_rho": 0.322,
+    "mean_quadratic_kappa": 0.32
+  },
+  "sample_size": 60,
+  "top_discrepancies": [
+    {
+      "tweet_id": "115000",
+      "query": "Dropped my iPhone iPhone 6s on concrete, the screen is shattered and touch isn't responding.",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Heuristic check for relevant domain terminology"
+    },
+    {
+      "tweet_id": "115006",
+      "query": "Back glass completely cracked on my device after dropping it on tile floor.",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Heuristic check for relevant domain terminology"
+    },
+    {
+      "tweet_id": "115008",
+      "query": "@AppleSupport Vibration motor makes a rattling buzz sound when receiving notifications.",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Heuristic check for relevant domain terminology"
+    },
+    {
+      "tweet_id": "115010",
+      "query": "Dropped my iPhone iPhone 6s on concrete, the screen is shattered and touch isn't responding. Please fix this @AppleSupport!",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Heuristic check for relevant domain terminology"
+    },
+    {
+      "tweet_id": "115016",
+      "query": "Back glass completely cracked on my device after dropping it on tile floor. Please fix this @AppleSupport!",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Heuristic check for relevant domain terminology"
+    }
+  ]
+}

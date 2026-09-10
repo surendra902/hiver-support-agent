@@ -1,0 +1,15 @@
+{
+  "id": "surendra1108/hiver-support-agent-pipeline",
+  "title": "Hiver Support Agent Pipeline",
+  "code_file": "hiver_pipeline.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["thoughtvector/customer-support-on-twitter"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

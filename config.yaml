@@ -1,0 +1,31 @@
+# Configuration for Hiver Customer Support AI Agent Pipeline
+brand: "AppleSupport"
+seed: 42
+
+data:
+  raw_dir: "data/raw"
+  sample_path: "data/sample/brand_sample.parquet"
+  golden_path: "data/golden/golden_v1.jsonl"
+  labelling_notes: "data/golden/labelling_notes.md"
+  cache_path: "data/cache/llm_eval_cache.json"
+  sample_size: 10000
+  golden_size: 200
+  calibration_size: 60
+
+retrieval:
+  top_k: 5
+  min_similarity_threshold: 0.35
+  vector_dim: 384
+  model_name: "all-MiniLM-L6-v2"
+
+routing:
+  auto_confidence_threshold: 0.65
+  false_auto_cost_weight: 10.0
+  false_escalate_cost_weight: 1.0
+
+models:
+  generator: "claude-3-5-haiku-20241022"
+  judge: "claude-3-5-sonnet-20241022"
+  temperature: 0.2
+
+results_dir: "results"
