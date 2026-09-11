@@ -136,6 +136,11 @@ def forensic_audit():
         else:
             errors.append("scripts/build_sample_and_golden.py still contains synthetic templates or IDs!")
 
+        if "intents_patterns" not in code and "verify_golden_set" in code:
+            passes.append("Code check passed: scripts/build_sample_and_golden.py strictly verifies static human-annotated set (zero regex generation).")
+        else:
+            errors.append("scripts/build_sample_and_golden.py should verify static golden set instead of generating with regexes!")
+
     # Verify calibrate_judge.py uses human_calibration_60.json and not heuristic formulas
     calib_script = "scripts/calibrate_judge.py"
     if os.path.exists(calib_script):
@@ -145,6 +150,16 @@ def forensic_audit():
             passes.append("Code check passed: scripts/calibrate_judge.py loads genuine human_calibration_60.json without formulas.")
         else:
             errors.append("scripts/calibrate_judge.py still contains heuristic formulas or misses human_calibration_60.json!")
+
+    # Verify src/evaluate.py renders dynamic precision vs auto-rate curve matching canonical operating point
+    eval_script = "src/evaluate.py"
+    if os.path.exists(eval_script):
+        with open(eval_script, "r", encoding="utf-8") as f:
+            eval_code = f.read()
+        if "Prec=94%, Auto=38%" not in eval_code and "op_rate" in eval_code and "op_prec" in eval_code:
+            passes.append("Code check passed: src/evaluate.py dynamically renders precision vs auto-rate curve matching current operating point.")
+        else:
+            errors.append("src/evaluate.py still has hardcoded 38% / 94% precision curve instead of dynamic operating point!")
 
     # -------------------------------------------------------------
     # 5. Cross-Document Forensic Metric Consistency

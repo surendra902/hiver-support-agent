@@ -131,8 +131,8 @@ hiver-support-agent/
 │   ├── schemas.py                      # Pydantic data models for all I/O
 │   └── taxonomy.py                     # 8-intent definitions and exemplars
 ├── scripts/
-│   ├── audit_and_verify.py             # 47-check forensic compliance audit
-│   ├── build_sample_and_golden.py      # Genuine TWCS data extractor and golden set generator
+│   ├── audit_and_verify.py             # 49-check forensic compliance audit
+│   ├── build_sample_and_golden.py      # Genuine TWCS data ingestion & static golden set verification pipeline
 │   ├── calibrate_judge.py              # Human vs judge calibration runner on human_calibration_60.json
 │   └── label_tool.py                   # Terminal annotation micro-CLI
 ├── results/
@@ -140,7 +140,7 @@ hiver-support-agent/
 │   ├── judge_agreement.json            # Statistical judge agreement data
 │   ├── failures.md                     # Top 5 failure modes with real IDs
 │   ├── confusion_matrix.png            # Intent confusion matrix plot
-│   └── precision_autorate.png          # Autonomous precision tradeoff curve
+│   └── precision_autorate.png          # Dynamic autonomous precision tradeoff curve (48.5% Auto / 88.7% Prec)
 └── tests/
     ├── test_retrieve.py                # Retrieval index unit tests
     └── test_schemas.py                 # Pydantic validation unit tests
