@@ -119,6 +119,7 @@ class SupportAgent:
             logger.info("No active LLM API key detected; agent will utilize cache or local deterministic heuristics.")
 
     _daily_quota_exhausted: bool = False
+    _consecutive_api_errors: int = 0
 
     def _call_llm_json(self, prompt: str, system_prompt: str) -> Dict[str, Any]:
         """Execute LLM call with disk cache fallback and strict JSON parsing."""
@@ -128,7 +129,10 @@ class SupportAgent:
 
         raw_text = None
 
-        if self.client_type == "anthropic":
+        if SupportAgent._daily_quota_exhausted:
+            raw_text = None
+
+        elif self.client_type == "anthropic":
             try:
                 response = self.client.messages.create(
                     model=self.model_name,
@@ -138,38 +142,43 @@ class SupportAgent:
                     messages=[{"role": "user", "content": prompt}]
                 )
                 raw_text = response.content[0].text
+                SupportAgent._consecutive_api_errors = 0
             except Exception as e:
                 logger.warning(f"Anthropic API error: {e}")
+                SupportAgent._consecutive_api_errors += 1
+                if SupportAgent._consecutive_api_errors >= 2:
+                    logger.warning("Multiple consecutive Anthropic API errors. Tripping agent circuit breaker to offline heuristic.")
+                    SupportAgent._daily_quota_exhausted = True
 
         elif self.client_type == "openai":
-            if SupportAgent._daily_quota_exhausted:
-                raw_text = None
-            else:
-                for attempt in range(2):
-                    try:
-                        response = self.client.chat.completions.create(
-                            model=self.model_name,
-                            temperature=0.2,
-                            max_tokens=1000,
-                            messages=[
-                                {"role": "system", "content": system_prompt + "\nReturn ONLY valid raw JSON without markdown code fences or commentary."},
-                                {"role": "user", "content": prompt}
-                            ]
-                        )
-                        raw_text = response.choices[0].message.content
-                        time.sleep(0.3)
+            for attempt in range(2):
+                try:
+                    response = self.client.chat.completions.create(
+                        model=self.model_name,
+                        temperature=0.2,
+                        max_tokens=1000,
+                        messages=[
+                            {"role": "system", "content": system_prompt + "\nReturn ONLY valid raw JSON without markdown code fences or commentary."},
+                            {"role": "user", "content": prompt}
+                        ]
+                    )
+                    raw_text = response.choices[0].message.content
+                    time.sleep(0.3)
+                    SupportAgent._consecutive_api_errors = 0
+                    break
+                except Exception as e:
+                    err_str = str(e)
+                    logger.warning(f"OpenAI/OpenRouter API error (attempt {attempt+1}/2): {e}")
+                    SupportAgent._consecutive_api_errors += 1
+                    if "free-models-per-day" in err_str or ("daily" in err_str.lower() and "limit" in err_str.lower()) or SupportAgent._consecutive_api_errors >= 2:
+                        logger.warning("API limit reached or multiple errors. Tripping agent circuit breaker to offline heuristic.")
+                        SupportAgent._daily_quota_exhausted = True
                         break
-                    except Exception as e:
-                        err_str = str(e)
-                        logger.warning(f"OpenAI/OpenRouter API error (attempt {attempt+1}/2): {e}")
-                        if "free-models-per-day" in err_str or ("daily" in err_str.lower() and "limit" in err_str.lower()):
-                            logger.warning("OpenRouter daily free-tier limit reached. Tripping agent circuit breaker to offline heuristic.")
-                            SupportAgent._daily_quota_exhausted = True
-                            break
-                        if attempt < 1:
-                            time.sleep(1)
+                    if attempt < 1:
+                        time.sleep(1)
 
         # Fallback to heuristic if API call failed
+        is_live_llm = raw_text is not None
         if raw_text is None:
             raw_text = self._offline_heuristic_response(prompt)
 
@@ -194,10 +203,14 @@ class SupportAgent:
                     parsed = json.loads(json_match.group())
                 except Exception:
                     parsed = json.loads(self._offline_heuristic_response(prompt))
+                    is_live_llm = False
             else:
                 parsed = json.loads(self._offline_heuristic_response(prompt))
+                is_live_llm = False
 
-        self.cache.set(prompt, self.model_name, parsed)
+        # Only persist live LLM completions to avoid stale heuristic cache pollution
+        if is_live_llm:
+            self.cache.set(prompt, self.model_name, parsed)
         return parsed
 
     def _offline_heuristic_response(self, prompt: str) -> str:
@@ -236,67 +249,76 @@ class SupportAgent:
             "complaint_feedback_other": 0
         }
 
+        def _match_kw(kw: str, text: str) -> bool:
+            if " " in kw or "-" in kw or "%" in kw:
+                return kw in text
+            return bool(re.search(r'\b' + re.escape(kw) + r'\b', text))
+
         # Device hardware
-        for kw in ["screen", "crack", "shatter", "broken", "damage", "drop", "water",
-                    "bent", "dent", "physical", "glass", "repair", "stuck button",
-                    "touch not responding", "dead pixel", "vibration", "rattle"]:
-            if kw in q:
+        for kw in ["screen", "screens", "display", "displays", "oled", "lcd", "crack", "cracks", "cracked",
+                    "shatter", "shattered", "broken", "broke", "damage", "damaged", "drop", "dropped",
+                    "water", "bent", "dent", "dented", "physical", "glass", "repair", "repairs",
+                    "stuck button", "touch not responding", "dead pixel", "vibration", "rattle", "smashed"]:
+            if _match_kw(kw, q):
                 intent_scores["device_hardware_damage"] += 3
         for kw in ["hardware", "genius bar", "fix this"]:
-            if kw in q:
+            if _match_kw(kw, q):
                 intent_scores["device_hardware_damage"] += 1
 
         # Battery
-        for kw in ["battery", "drain", "charging", "charge", "power off", "overheating",
-                    "hot", "won't turn on", "dies fast", "battery life", "power",
-                    "percentage", "swollen", "cable", "lightning", "usb-c"]:
-            if kw in q:
+        for kw in ["battery", "batteries", "drain", "draining", "drains", "charging", "charge", "charges",
+                    "power off", "overheating", "hot", "won't turn on", "dies fast", "battery life", "power",
+                    "percentage", "swollen", "lightning cable", "usb-c"]:
+            if _match_kw(kw, q):
                 intent_scores["battery_power_charging"] += 3
         for kw in ["hour", "minute", "%"]:
-            if kw in q:
+            if _match_kw(kw, q):
                 intent_scores["battery_power_charging"] += 1
 
         # Software
-        for kw in ["update", "ios", "bug", "crash", "freeze", "glitch", "stuck",
-                    "boot loop", "restart", "slow", "lag", "app", "software",
-                    "bricked", "restore", "error code", "factory reset"]:
-            if kw in q:
+        for kw in ["update", "updates", "updated", "updating", "ios", "bug", "bugs", "crash", "crashes",
+                    "crashed", "crashing", "freeze", "freezes", "frozen", "glitch", "glitches", "stuck",
+                    "boot loop", "restart", "restarted", "slow", "lag", "lagging", "app", "apps",
+                    "software", "bricked", "restore", "error code", "factory reset"]:
+            if _match_kw(kw, q):
                 intent_scores["software_update_bug"] += 3
 
         # Apple ID / iCloud
-        for kw in ["apple id", "icloud", "password", "locked out", "activation lock",
-                    "two-factor", "2fa", "verification", "sign in", "forgot",
-                    "recovery", "trusted device", "security", "phishing",
-                    "suspicious email", "backup failed", "storage"]:
-            if kw in q:
+        for kw in ["apple id", "icloud", "password", "passwords", "locked out", "locked", "activation lock",
+                    "two-factor", "2fa", "verification code", "sign in", "forgot password",
+                    "account recovery", "trusted device", "phishing",
+                    "suspicious email", "backup failed"]:
+            if _match_kw(kw, q):
                 intent_scores["apple_id_icloud_security"] += 3
 
         # Connectivity
         for kw in ["wifi", "wi-fi", "bluetooth", "cellular", "signal", "hotspot",
-                    "disconnect", "pair", "network", "internet", "airplane mode",
-                    "lte", "5g", "no service", "calling"]:
-            if kw in q:
+                    "disconnect", "disconnects", "disconnected", "disconnecting", "pair", "pairing",
+                    "network", "airplane mode", "lte", "5g", "no service", "greyed out", "grayed out"]:
+            if _match_kw(kw, q):
                 intent_scores["connectivity_wifi_bluetooth"] += 3
 
         # Audio
-        for kw in ["airpod", "sound", "speaker", "mic", "microphone", "headphone",
-                    "volume", "audio", "noise", "static", "earphone", "earbud",
-                    "music", "podcast", "siri can't hear"]:
-            if kw in q:
+        for kw in ["airpod", "airpods", "sound", "sounds", "speaker", "speakers", "mic", "microphone",
+                    "headphone", "headphones", "volume", "audio", "noise", "static", "earphone", "earphones",
+                    "earbud", "earbuds", "siri can't hear"]:
+            if _match_kw(kw, q):
                 intent_scores["audio_sound_accessories"] += 3
 
         # Billing
-        for kw in ["bill", "refund", "charged", "subscription", "purchase",
-                    "unauthorized", "receipt", "invoice", "app store", "itunes",
-                    "payment", "cancel", "trial", "money"]:
-            if kw in q:
-                intent_scores["store_billing_purchase"] += 3
+        for kw in ["bill", "billing", "refund", "refunds", "charged", "charge", "subscription", "subscriptions",
+                    "purchase", "purchases", "unauthorized charge", "receipt", "invoice", "payment",
+                    "cancel subscription", "trial", "double charge", "charged twice", "charged my"]:
+            if _match_kw(kw, q):
+                intent_scores["store_billing_purchase"] += 4
 
         # Complaint / feedback
-        for kw in ["worst", "terrible", "horrible", "angry", "frustrated", "joke",
+        for kw in ["worst", "terrible", "horrible", "angry", "frustrated", "frustrating", "joke",
                     "useless", "pathetic", "scam", "rip off", "never again",
-                    "disappointed", "waste", "hate", "sucks"]:
-            if kw in q:
+                    "disappointed", "waste", "hate", "sucks", "unhelpful", "rude",
+                    "poor service", "bad service", "unacceptable", "awful", "ridiculous",
+                    "poor", "complaint", "attitude"]:
+            if _match_kw(kw, q):
                 intent_scores["complaint_feedback_other"] += 4
 
         # Select highest scoring intent
@@ -380,9 +402,10 @@ class SupportAgent:
             ]
         }
 
-        # Deterministically select a template variant based on query hash
+        # Deterministically select a template variant based on query MD5 hash
         templates = reply_templates.get(intent, reply_templates["complaint_feedback_other"])
-        variant_idx = hash(query) % len(templates)
+        query_hash_int = int(hashlib.md5(query.encode("utf-8")).hexdigest(), 16)
+        variant_idx = query_hash_int % len(templates)
         base_reply = templates[variant_idx]
 
         # If an exemplar reply is available and substantive, blend key phrases

@@ -81,6 +81,7 @@ class LLMJudge:
         self._init_client()
 
     _daily_quota_exhausted: bool = False
+    _consecutive_api_errors: int = 0
 
     def _init_client(self) -> None:
         # Check for OpenRouter first
@@ -125,7 +126,10 @@ class LLMJudge:
 
         raw = None
 
-        if self.client_type == "anthropic":
+        if LLMJudge._daily_quota_exhausted:
+            raw = None
+
+        elif self.client_type == "anthropic":
             try:
                 response = self.client.messages.create(
                     model=self.model_name,
@@ -134,36 +138,41 @@ class LLMJudge:
                     messages=[{"role": "user", "content": prompt}]
                 )
                 raw = response.content[0].text
+                LLMJudge._consecutive_api_errors = 0
             except Exception as e:
                 logger.warning(f"Anthropic judge API error: {e}")
+                LLMJudge._consecutive_api_errors += 1
+                if LLMJudge._consecutive_api_errors >= 2:
+                    logger.warning("Multiple consecutive Anthropic judge API errors. Tripping judge circuit breaker.")
+                    LLMJudge._daily_quota_exhausted = True
 
         elif self.client_type == "openai":
-            if LLMJudge._daily_quota_exhausted:
-                raw = None
-            else:
-                import time as _time
-                for attempt in range(2):
-                    try:
-                        response = self.client.chat.completions.create(
-                            model=self.model_name,
-                            temperature=0.1,
-                            max_tokens=1000,
-                            messages=[{"role": "user", "content": prompt}]
-                        )
-                        raw = response.choices[0].message.content
-                        _time.sleep(0.3)
+            import time as _time
+            for attempt in range(2):
+                try:
+                    response = self.client.chat.completions.create(
+                        model=self.model_name,
+                        temperature=0.1,
+                        max_tokens=1000,
+                        messages=[{"role": "user", "content": prompt}]
+                    )
+                    raw = response.choices[0].message.content
+                    _time.sleep(0.3)
+                    LLMJudge._consecutive_api_errors = 0
+                    break
+                except Exception as e:
+                    err_str = str(e)
+                    logger.warning(f"OpenAI/OpenRouter judge API error (attempt {attempt+1}/2): {e}")
+                    LLMJudge._consecutive_api_errors += 1
+                    if "free-models-per-day" in err_str or ("daily" in err_str.lower() and "limit" in err_str.lower()) or LLMJudge._consecutive_api_errors >= 2:
+                        logger.warning("Judge API limit or errors reached. Tripping judge circuit breaker.")
+                        LLMJudge._daily_quota_exhausted = True
                         break
-                    except Exception as e:
-                        err_str = str(e)
-                        logger.warning(f"OpenAI/OpenRouter judge API error (attempt {attempt+1}/2): {e}")
-                        if "free-models-per-day" in err_str or ("daily" in err_str.lower() and "limit" in err_str.lower()):
-                            logger.warning("OpenRouter daily free-tier limit reached. Tripping judge circuit breaker.")
-                            LLMJudge._daily_quota_exhausted = True
-                            break
-                        if attempt < 1:
-                            _time.sleep(1)
+                    if attempt < 1:
+                        _time.sleep(1)
 
         # Fallback to heuristic if API failed
+        is_live_llm = raw is not None
         if raw is None:
             raw = self._heuristic_judge_score(query, reply)
 
@@ -177,8 +186,9 @@ class LLMJudge:
                 clean_json = clean_json[:-3]
             parsed = json.loads(clean_json.strip())
             scores = JudgeRubricScores(**parsed)
-            self.cache.set(prompt, self.model_name, parsed)
-            self.cache.save()
+            if is_live_llm:
+                self.cache.set(prompt, self.model_name, parsed)
+                self.cache.save()
             return scores
         except Exception as e:
             # Try regex JSON extraction
@@ -188,8 +198,9 @@ class LLMJudge:
                 try:
                     parsed = json.loads(json_match.group())
                     scores = JudgeRubricScores(**parsed)
-                    self.cache.set(prompt, self.model_name, parsed)
-                    self.cache.save()
+                    if is_live_llm:
+                        self.cache.set(prompt, self.model_name, parsed)
+                        self.cache.save()
                     return scores
                 except Exception:
                     pass

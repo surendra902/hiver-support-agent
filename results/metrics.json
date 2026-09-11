@@ -1,25 +1,25 @@
 {
   "proposed_agent": {
     "intent": {
-      "accuracy": 0.745,
-      "macro_f1": 0.738,
-      "macro_precision": 0.814,
-      "macro_recall": 0.739
+      "accuracy": 0.79,
+      "macro_f1": 0.788,
+      "macro_precision": 0.828,
+      "macro_recall": 0.783
     },
     "routing": {
-      "auto_precision": 0.741,
-      "auto_recall": 0.698,
-      "auto_f1": 0.719,
-      "auto_rate": 0.405,
-      "cost_weighted_error": 1.18
+      "auto_precision": 0.747,
+      "auto_recall": 0.721,
+      "auto_f1": 0.734,
+      "auto_rate": 0.415,
+      "cost_weighted_error": 1.17
     },
     "reply_quality_judge": {
-      "relevance": 4.4,
-      "groundedness": 4.28,
-      "actionability": 3.4,
-      "tone_brand_fit": 3.96,
-      "safety": 4.82,
-      "composite_1_to_5": 4.17
+      "relevance": 4.58,
+      "groundedness": 4.52,
+      "actionability": 4.2,
+      "tone_brand_fit": 4.0,
+      "safety": 4.88,
+      "composite_1_to_5": 4.44
     }
   },
   "simple_baseline": {
@@ -69,9 +69,9 @@
     }
   },
   "pairwise_win_rates": {
-    "agent_win_rate": 0.95,
-    "simple_baseline_win_rate": 0.0,
-    "tie_rate": 0.05,
+    "agent_win_rate": 0.925,
+    "simple_baseline_win_rate": 0.05,
+    "tie_rate": 0.025,
     "evaluated_pairs": 40
   }
 }
