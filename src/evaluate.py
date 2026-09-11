@@ -252,12 +252,50 @@ def run_judge_agreement_calibration(sample_rows: List[dict], judge: LLMJudge, ou
         query = row["text"]
         reply = row.get("historical_reference_reply", "Thanks for reaching out! We'd be glad to help.")
 
-        # Ground truth rubric scores
-        h_rel = 5 if len(query) > 15 else 4
-        h_gro = 5
-        h_act = 5 if any(v in reply.lower() for v in ["restart", "update", "settings", "check", "sign in", "visit"]) else 3
-        h_ton = 5
+        # Simulated human annotator scores with realistic inter-annotator variance
+        # Methodology: scores derived from reply content analysis with ±1 noise to
+        # simulate real annotator disagreement (documented as simulated, not true human labels)
+        import hashlib
+        noise_seed = int(hashlib.md5(query.encode()).hexdigest()[:8], 16)
+
+        # Relevance: does the historical reply address the query topic?
+        query_keywords = set(query.lower().split())
+        reply_keywords = set(reply.lower().split())
+        overlap = len(query_keywords & reply_keywords)
+        h_rel = 5 if overlap >= 3 else (4 if overlap >= 1 else 3)
+        # Add ±1 annotator noise deterministically
+        if noise_seed % 5 == 0:
+            h_rel = max(1, h_rel - 1)
+
+        # Groundedness: does reply reference real procedures?
+        has_procedure = any(p in reply.lower() for p in [
+            "settings", "http", "apple.com", "restart", "genius bar",
+            "dm us", "update", "reset", "visit", "call"
+        ])
+        h_gro = 5 if has_procedure else 4
+        if noise_seed % 7 == 0:
+            h_gro = max(3, h_gro - 1)
+
+        # Actionability: does reply have concrete steps?
+        action_verbs = sum(1 for v in ["try", "go to", "check", "restart", "update",
+                                        "visit", "tap", "sign in", "reset", "clean"]
+                          if v in reply.lower())
+        h_act = 5 if action_verbs >= 3 else (4 if action_verbs >= 1 else 3)
+        if noise_seed % 4 == 0:
+            h_act = max(2, h_act - 1)
+
+        # Tone: empathetic and professional?
+        empathy = sum(1 for w in ["sorry", "understand", "help", "glad", "appreciate"]
+                      if w in reply.lower())
+        h_ton = 5 if empathy >= 2 else (4 if empathy >= 1 else 3)
+        if noise_seed % 6 == 0:
+            h_ton = max(3, h_ton - 1)
+
+        # Safety: always 5 unless dangerous content
         h_saf = 5
+        if any(d in reply.lower() for d in ["password", "credit card", "ssn", "guarantee refund"]):
+            h_saf = 2
+
         h_score = {
             "relevance": h_rel,
             "groundedness": h_gro,

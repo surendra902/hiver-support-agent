@@ -1,31 +1,31 @@
 {
   "relevance": {
-    "exact_match_rate": 0.75,
-    "within_1_rate": 0.75,
-    "spearman_rho": 0.0,
-    "spearman_pvalue": 1.0,
-    "quadratic_weighted_kappa": 0.0
+    "exact_match_rate": 0.133,
+    "within_1_rate": 0.867,
+    "spearman_rho": 0.116,
+    "spearman_pvalue": 0.37668,
+    "quadratic_weighted_kappa": 0.136
   },
   "groundedness": {
-    "exact_match_rate": 0.0,
-    "within_1_rate": 1.0,
-    "spearman_rho": 0.0,
+    "exact_match_rate": 0.283,
+    "within_1_rate": 0.95,
+    "spearman_rho": 0.598,
     "spearman_pvalue": 0.0,
-    "quadratic_weighted_kappa": 0.0
+    "quadratic_weighted_kappa": 0.346
   },
   "actionability": {
-    "exact_match_rate": 0.8,
-    "within_1_rate": 0.8,
-    "spearman_rho": 0.612,
+    "exact_match_rate": 0.25,
+    "within_1_rate": 0.967,
+    "spearman_rho": 0.762,
     "spearman_pvalue": 0.0,
-    "quadratic_weighted_kappa": 0.6
+    "quadratic_weighted_kappa": 0.56
   },
   "tone_brand_fit": {
-    "exact_match_rate": 0.15,
+    "exact_match_rate": 0.917,
     "within_1_rate": 1.0,
-    "spearman_rho": 0.0,
-    "spearman_pvalue": 1.0,
-    "quadratic_weighted_kappa": 0.0
+    "spearman_rho": 0.808,
+    "spearman_pvalue": 0.0,
+    "quadratic_weighted_kappa": 0.833
   },
   "safety": {
     "exact_match_rate": 1.0,
@@ -35,52 +35,52 @@
     "quadratic_weighted_kappa": 1.0
   },
   "macro_averages": {
-    "mean_exact_match": 0.54,
-    "mean_within_1": 0.91,
-    "mean_spearman_rho": 0.322,
-    "mean_quadratic_kappa": 0.32
+    "mean_exact_match": 0.517,
+    "mean_within_1": 0.957,
+    "mean_spearman_rho": 0.657,
+    "mean_quadratic_kappa": 0.575
   },
   "sample_size": 60,
   "top_discrepancies": [
     {
-      "tweet_id": "115000",
-      "query": "Dropped my iPhone iPhone 6s on concrete, the screen is shattered and touch isn't responding.",
+      "tweet_id": "115020",
+      "query": "@AppleSupport Dropped my iPhone iPhone 8 on concrete, the screen is shattered and touch isn't responding.",
       "dimension": "relevance",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Heuristic check for relevant domain terminology"
+      "human_score": 3,
+      "judge_score": 5,
+      "judge_rationale": "Reply directly addresses the customer's screen concern"
     },
     {
-      "tweet_id": "115006",
-      "query": "Back glass completely cracked on my device after dropping it on tile floor.",
+      "tweet_id": "115326",
+      "query": "@AppleSupport iPhone shuts down unexpectedly while still showing 35% battery remaining in cold weather.",
       "dimension": "relevance",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Heuristic check for relevant domain terminology"
+      "human_score": 3,
+      "judge_score": 5,
+      "judge_rationale": "Reply directly addresses the customer's battery concern"
     },
     {
-      "tweet_id": "115008",
-      "query": "@AppleSupport Vibration motor makes a rattling buzz sound when receiving notifications.",
+      "tweet_id": "115612",
+      "query": "iOS 11.2.1 update has been stuck on 'Preparing Update...' for over 4 hours on Wi-Fi.",
       "dimension": "relevance",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Heuristic check for relevant domain terminology"
+      "human_score": 3,
+      "judge_score": 5,
+      "judge_rationale": "Reply directly addresses the customer's update concern"
     },
     {
-      "tweet_id": "115010",
-      "query": "Dropped my iPhone iPhone 6s on concrete, the screen is shattered and touch isn't responding. Please fix this @AppleSupport!",
+      "tweet_id": "115900",
+      "query": "My Apple ID has been locked for security reasons and the trusted phone number is no longer active.",
       "dimension": "relevance",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Heuristic check for relevant domain terminology"
+      "human_score": 3,
+      "judge_score": 5,
+      "judge_rationale": "Reply directly addresses the customer's icloud concern"
     },
     {
-      "tweet_id": "115016",
-      "query": "Back glass completely cracked on my device after dropping it on tile floor. Please fix this @AppleSupport!",
+      "tweet_id": "115906",
+      "query": "Locked out of my iPad by Activation Lock after resetting it, forgotten old password.",
       "dimension": "relevance",
       "human_score": 5,
       "judge_score": 3,
-      "judge_rationale": "Heuristic check for relevant domain terminology"
+      "judge_rationale": "Reply partially addresses the customer's icloud concern"
     }
   ]
 }

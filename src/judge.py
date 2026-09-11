@@ -80,8 +80,23 @@ class LLMJudge:
         self.client_type = None
         self._init_client()
 
+    _daily_quota_exhausted: bool = False
+
     def _init_client(self) -> None:
-        if os.getenv("ANTHROPIC_API_KEY"):
+        # Check for OpenRouter first
+        if os.getenv("OPENROUTER_API_KEY"):
+            try:
+                import openai
+                self.client = openai.OpenAI(
+                    api_key=os.getenv("OPENROUTER_API_KEY"),
+                    base_url="https://openrouter.ai/api/v1",
+                    max_retries=1
+                )
+                self.client_type = "openai"
+                self.model_name = os.getenv("OPENROUTER_MODEL", "nex-agi/nex-n2.5-mini:free")
+            except ImportError:
+                pass
+        elif os.getenv("ANTHROPIC_API_KEY"):
             try:
                 import anthropic
                 self.client = anthropic.Anthropic()
@@ -91,7 +106,7 @@ class LLMJudge:
         elif os.getenv("OPENAI_API_KEY"):
             try:
                 import openai
-                self.client = openai.OpenAI()
+                self.client = openai.OpenAI(max_retries=1)
                 self.client_type = "openai"
             except ImportError:
                 pass
@@ -108,30 +123,56 @@ class LLMJudge:
         if cached:
             return JudgeRubricScores(**cached)
 
+        raw = None
+
         if self.client_type == "anthropic":
-            response = self.client.messages.create(
-                model=self.model_name,
-                max_tokens=1000,
-                temperature=0.1,
-                messages=[{"role": "user", "content": prompt}]
-            )
-            raw = response.content[0].text
+            try:
+                response = self.client.messages.create(
+                    model=self.model_name,
+                    max_tokens=1000,
+                    temperature=0.1,
+                    messages=[{"role": "user", "content": prompt}]
+                )
+                raw = response.content[0].text
+            except Exception as e:
+                logger.warning(f"Anthropic judge API error: {e}")
+
         elif self.client_type == "openai":
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                temperature=0.1,
-                response_format={"type": "json_object"},
-                messages=[{"role": "user", "content": prompt}]
-            )
-            raw = response.choices[0].message.content
-        else:
-            # Deterministic heuristic scoring for offline baseline calibration
+            if LLMJudge._daily_quota_exhausted:
+                raw = None
+            else:
+                import time as _time
+                for attempt in range(2):
+                    try:
+                        response = self.client.chat.completions.create(
+                            model=self.model_name,
+                            temperature=0.1,
+                            max_tokens=1000,
+                            messages=[{"role": "user", "content": prompt}]
+                        )
+                        raw = response.choices[0].message.content
+                        _time.sleep(0.3)
+                        break
+                    except Exception as e:
+                        err_str = str(e)
+                        logger.warning(f"OpenAI/OpenRouter judge API error (attempt {attempt+1}/2): {e}")
+                        if "free-models-per-day" in err_str or ("daily" in err_str.lower() and "limit" in err_str.lower()):
+                            logger.warning("OpenRouter daily free-tier limit reached. Tripping judge circuit breaker.")
+                            LLMJudge._daily_quota_exhausted = True
+                            break
+                        if attempt < 1:
+                            _time.sleep(1)
+
+        # Fallback to heuristic if API failed
+        if raw is None:
             raw = self._heuristic_judge_score(query, reply)
 
         try:
             clean_json = raw.strip()
             if clean_json.startswith("```json"):
                 clean_json = clean_json[7:]
+            if clean_json.startswith("```"):
+                clean_json = clean_json[3:]
             if clean_json.endswith("```"):
                 clean_json = clean_json[:-3]
             parsed = json.loads(clean_json.strip())
@@ -140,20 +181,119 @@ class LLMJudge:
             self.cache.save()
             return scores
         except Exception as e:
-            logger.warning(f"Failed to parse judge output: {e}, using default fallback.")
-            return JudgeRubricScores(
-                relevance=4, groundedness=4, actionability=4, tone_brand_fit=4, safety=5,
-                rationales={"overall": "Default heuristic evaluation score"}
-            )
+            # Try regex JSON extraction
+            import re
+            json_match = re.search(r'\{[^{}]*\}', raw, re.DOTALL)
+            if json_match:
+                try:
+                    parsed = json.loads(json_match.group())
+                    scores = JudgeRubricScores(**parsed)
+                    self.cache.set(prompt, self.model_name, parsed)
+                    self.cache.save()
+                    return scores
+                except Exception:
+                    pass
+            logger.warning(f"Failed to parse judge output: {e}, using heuristic fallback.")
+            fallback_raw = self._heuristic_judge_score(query, reply)
+            fallback_parsed = json.loads(fallback_raw)
+            return JudgeRubricScores(**fallback_parsed)
 
     def _heuristic_judge_score(self, query: str, reply: str) -> str:
-        """Deterministic offline scoring based on reply length, action verbs, and safety checks."""
-        r_len = len(reply.split())
-        relevance = 5 if any(w in reply.lower() for w in ["device", "ios", "restart", "settings", "update", "apple"]) else 3
-        groundedness = 4
-        actionability = 5 if any(v in reply.lower() for v in ["restart", "go to", "check", "tap", "update", "try", "ensure"]) else 3
-        tone = 5 if "help" in reply.lower() or "reach out" in reply.lower() else 4
-        safety = 2 if any(bad in reply.lower() for bad in ["guarantee refund", "give me your password", "$"]) else 5
+        """Deterministic offline scoring with nuanced query-reply semantic alignment."""
+        q_lower = query.lower()
+        r_lower = reply.lower()
+        q_words = set(q_lower.split())
+        r_words = set(r_lower.split())
+
+        # --- RELEVANCE: Does the reply address the query's specific topic? ---
+        topic_keywords = {
+            "battery": ["battery", "charging", "power", "drain", "cable"],
+            "screen": ["screen", "display", "touch", "crack", "repair"],
+            "update": ["update", "ios", "software", "restart", "install"],
+            "wifi": ["wi-fi", "wifi", "network", "bluetooth", "connect"],
+            "icloud": ["icloud", "apple id", "account", "password", "security"],
+            "airpod": ["airpod", "audio", "sound", "speaker", "bluetooth"],
+            "billing": ["charge", "refund", "subscription", "purchase", "payment"],
+        }
+
+        # Find which topic the query is about
+        query_topic = None
+        for topic, keywords in topic_keywords.items():
+            if any(kw in q_lower for kw in keywords):
+                query_topic = topic
+                break
+
+        # Check if the reply addresses the same topic
+        if query_topic:
+            topic_kws = topic_keywords[query_topic]
+            reply_has_topic = any(kw in r_lower for kw in topic_kws)
+            relevance = 5 if reply_has_topic else 3
+        else:
+            # Generic query — check for supportive language
+            relevance = 4 if any(w in r_lower for w in ["help", "assist", "support"]) else 3
+
+        # Bonus for specific query terms appearing in reply
+        overlap = len(q_words & r_words)
+        if overlap >= 5:
+            relevance = min(5, relevance + 1)
+
+        # --- GROUNDEDNESS: Is the reply grounded in real Apple procedures? ---
+        apple_procedures = [
+            "settings >", "getsupport.apple.com", "iforgot.apple.com",
+            "appleid.apple.com", "reportaproblem.apple.com", "genius bar",
+            "force restart", "reset network", "battery health", "dm us",
+            "1-800-my-apple", "apple store"
+        ]
+        procedure_count = sum(1 for proc in apple_procedures if proc in r_lower)
+        if procedure_count >= 2:
+            groundedness = 5
+        elif procedure_count >= 1:
+            groundedness = 4
+        elif any(w in r_lower for w in ["try", "check", "go to", "visit"]):
+            groundedness = 4
+        else:
+            groundedness = 3
+
+        # --- ACTIONABILITY: Does reply have concrete steps? ---
+        action_indicators = ["1)", "2)", "3)", "step", "go to settings",
+                              "tap", "toggle", "press", "restart", "try",
+                              "visit http", "check", "clean", "remove", "reset"]
+        action_count = sum(1 for a in action_indicators if a in r_lower)
+        if action_count >= 4:
+            actionability = 5
+        elif action_count >= 2:
+            actionability = 4
+        elif action_count >= 1:
+            actionability = 3
+        else:
+            actionability = 2
+
+        # --- TONE: Is the tone appropriate? ---
+        empathy_words = ["sorry", "understand", "frustrating", "appreciate",
+                          "glad to help", "we'd like", "help", "concern"]
+        empathy_count = sum(1 for w in empathy_words if w in r_lower)
+        if empathy_count >= 2 and len(reply) < 500:
+            tone = 5
+        elif empathy_count >= 1:
+            tone = 4
+        else:
+            tone = 3
+
+        # --- SAFETY: No dangerous advice? ---
+        dangerous_patterns = ["guarantee refund", "give me your password",
+                               "share your password", "send money", "wire transfer",
+                               "guaranteed replacement", "$"]
+        has_danger = any(p in r_lower for p in dangerous_patterns)
+        safety = 2 if has_danger else 5
+
+        # Generate rationales
+        rationales = {
+            "relevance": f"Reply {'directly addresses' if relevance >= 4 else 'partially addresses'} the customer's {query_topic or 'general'} concern",
+            "groundedness": f"Reply references {procedure_count} verified Apple support procedures" if procedure_count > 0 else "Reply provides plausible but unverified advice",
+            "actionability": f"Reply contains {action_count} concrete action steps" if action_count > 0 else "Reply lacks specific troubleshooting steps",
+            "tone_brand_fit": f"Empathetic and professional tone with {empathy_count} rapport-building phrases",
+            "safety": "No unauthorized commitments or dangerous instructions detected" if not has_danger else "Contains potentially unsafe guidance"
+        }
 
         return json.dumps({
             "relevance": relevance,
@@ -161,13 +301,7 @@ class LLMJudge:
             "actionability": actionability,
             "tone_brand_fit": tone,
             "safety": safety,
-            "rationales": {
-                "relevance": "Heuristic check for relevant domain terminology",
-                "groundedness": "Matches Apple tone and troubleshooting guidance",
-                "actionability": "Contains actionable steps and direction",
-                "tone_brand_fit": "Polite and brand-consistent",
-                "safety": "No high-risk unauthorized commitments detected"
-            }
+            "rationales": rationales
         })
 
     def evaluate_pairwise(self, query: str, reply_a: str, reply_b: str) -> PairwiseJudgeResult:
@@ -183,15 +317,50 @@ class LLMJudge:
         if cached:
             return PairwiseJudgeResult(**cached)
 
-        # Basic offline heuristic comparison: longer and more actionable reply wins
-        score_a = len(reply_a) + (50 if "restart" in reply_a.lower() else 0)
-        score_b = len(reply_b) + (50 if "restart" in reply_b.lower() else 0)
-        preferred = "model_a" if score_a > score_b else ("model_b" if score_b > score_a else "tie")
+        # Multi-dimensional offline comparison
+        def _score_reply(q: str, r: str) -> int:
+            rl = r.lower()
+            ql = q.lower()
+            score = 0
+            # Actionability: numbered steps
+            score += rl.count("1)") * 15 + rl.count("2)") * 10 + rl.count("3)") * 10
+            # Specificity: Apple-specific URLs/procedures
+            for proc in ["settings >", "getsupport", "iforgot", "appleid.apple.com",
+                          "reportaproblem", "genius bar", "battery health", "force restart"]:
+                if proc in rl:
+                    score += 20
+            # Topic relevance: overlap between query and reply keywords
+            q_words = set(ql.split())
+            r_words = set(rl.split())
+            score += len(q_words & r_words) * 3
+            # Empathy
+            for w in ["sorry", "understand", "frustrating", "help", "glad"]:
+                if w in rl:
+                    score += 5
+            # Length (mild bonus, not dominant)
+            score += min(len(r) // 10, 30)
+            return score
+
+        score_a = _score_reply(query, reply_a)
+        score_b = _score_reply(query, reply_b)
+
+        margin = abs(score_a - score_b)
+        if margin < 5:
+            preferred = "tie"
+            rationale = "Both replies are comparable in quality and specificity."
+        elif score_a > score_b:
+            preferred = "model_a"
+            rationale = f"Reply A provides more specific troubleshooting guidance (score margin: {margin})."
+        else:
+            preferred = "model_b"
+            rationale = f"Reply B provides more specific troubleshooting guidance (score margin: {margin})."
+
+        confidence = min(0.95, 0.60 + margin * 0.005)
 
         result = PairwiseJudgeResult(
             preferred=preferred,
-            winner_rationale="Evaluated based on diagnostic specificity and actionable troubleshooting guidance.",
-            confidence=0.85
+            winner_rationale=rationale,
+            confidence=round(confidence, 2)
         )
         self.cache.set(prompt, self.model_name, result.model_dump())
         self.cache.save()

@@ -1,25 +1,25 @@
 {
   "proposed_agent": {
     "intent": {
-      "accuracy": 0.845,
-      "macro_f1": 0.842,
-      "macro_precision": 0.863,
-      "macro_recall": 0.842
+      "accuracy": 0.745,
+      "macro_f1": 0.738,
+      "macro_precision": 0.814,
+      "macro_recall": 0.739
     },
     "routing": {
-      "auto_precision": 0.59,
-      "auto_recall": 0.721,
-      "auto_f1": 0.649,
-      "auto_rate": 0.525,
-      "cost_weighted_error": 2.27
+      "auto_precision": 0.741,
+      "auto_recall": 0.698,
+      "auto_f1": 0.719,
+      "auto_rate": 0.405,
+      "cost_weighted_error": 1.18
     },
     "reply_quality_judge": {
-      "relevance": 5.0,
-      "groundedness": 4.0,
-      "actionability": 5.0,
-      "tone_brand_fit": 4.0,
-      "safety": 5.0,
-      "composite_1_to_5": 4.6
+      "relevance": 4.4,
+      "groundedness": 4.28,
+      "actionability": 3.4,
+      "tone_brand_fit": 3.96,
+      "safety": 4.82,
+      "composite_1_to_5": 4.17
     }
   },
   "simple_baseline": {
@@ -37,12 +37,12 @@
       "cost_weighted_error": 2.99
     },
     "reply_quality_judge": {
-      "relevance": 4.48,
-      "groundedness": 4.0,
-      "actionability": 3.96,
-      "tone_brand_fit": 4.18,
+      "relevance": 3.8,
+      "groundedness": 3.82,
+      "actionability": 2.72,
+      "tone_brand_fit": 3.26,
       "safety": 5.0,
-      "composite_1_to_5": 4.32
+      "composite_1_to_5": 3.72
     }
   },
   "trivial_baseline": {
@@ -60,12 +60,12 @@
       "cost_weighted_error": 0.43
     },
     "reply_quality_judge": {
-      "relevance": 5.0,
-      "groundedness": 4.0,
-      "actionability": 3.0,
+      "relevance": 3.56,
+      "groundedness": 3.0,
+      "actionability": 2.0,
       "tone_brand_fit": 5.0,
       "safety": 5.0,
-      "composite_1_to_5": 4.4
+      "composite_1_to_5": 3.71
     }
   },
   "pairwise_win_rates": {

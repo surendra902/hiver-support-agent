@@ -26,108 +26,108 @@ Total Discrepancies in Golden Set: 78 / 200
 
 ## Detailed Discrepancy Log (Sample Discrepancies)
 
-#### Example 1 (Tweet ID: `115002`)
-- **Customer Query:** "@AppleSupport The lock/power button on my iPhone iPhone 7 is physically stuck inside the frame."
-- **Intent:** Gold = `device_hardware_damage` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
-
-#### Example 2 (Tweet ID: `115004`)
-- **Customer Query:** "Dropped my phone in water and now the camera lens has condensation inside it. Please fix this @AppleSupport!"
-- **Intent:** Gold = `device_hardware_damage` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
-
-#### Example 3 (Tweet ID: `115022`)
-- **Customer Query:** "The lock/power button on my iPhone iPhone SE is physically stuck inside the frame. Please fix this @AppleSupport!"
-- **Intent:** Gold = `device_hardware_damage` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
-
-#### Example 4 (Tweet ID: `115028`)
-- **Customer Query:** "Vibration motor makes a rattling buzz sound when receiving notifications. Please fix this @AppleSupport!"
-- **Intent:** Gold = `device_hardware_damage` | Predicted = `audio_sound_accessories`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
-
-#### Example 5 (Tweet ID: `115328`)
-- **Customer Query:** "Charging port feels loose and cable keeps disconnecting unless held at a specific angle. Please fix this @AppleSupport!"
-- **Intent:** Gold = `battery_power_charging` | Predicted = `complaint_feedback_other`
+#### Example 1 (Tweet ID: `115314`)
+- **Customer Query:** "@AppleSupport Phone gets extremely hot to the touch while charging and battery percentage drains instead of rising."
+- **Intent:** Gold = `battery_power_charging` | Predicted = `battery_power_charging`
 - **Routing:** Gold = `AUTO` | Predicted = `ESCALATE`
-- **Stated Routing Reason:** Hard guardrail triggered: message is general complaint/feedback without actionable technical issue.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+- **Stated Routing Reason:** The device is extremely hot while charging and the battery is draining, which may indicate a safety or hardware issue requiring human support.
+- **Drafted Reply:** "If your iPhone is extremely hot, disconnect it from charging. Try an alternate Apple-certified cable and adapter. If it remains hot or the battery still drains, contact Apple Support for further help."
 
-#### Example 6 (Tweet ID: `115900`)
-- **Customer Query:** "My Apple ID has been locked for security reasons and the trusted phone number is no longer active."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 2 (Tweet ID: `115324`)
+- **Customer Query:** "Phone gets extremely hot to the touch while charging and battery percentage drains instead of rising."
+- **Intent:** Gold = `battery_power_charging` | Predicted = `battery_power_charging`
+- **Routing:** Gold = `AUTO` | Predicted = `ESCALATE`
+- **Stated Routing Reason:** The device is extremely hot while charging and the battery is draining, which may indicate a safety or hardware issue requiring human support.
+- **Drafted Reply:** "If your iPhone is extremely hot, disconnect it from charging. Try an alternate Apple-certified cable and adapter. If it remains hot or the battery still drains, contact Apple Support for further help."
 
-#### Example 7 (Tweet ID: `115902`)
-- **Customer Query:** "@AppleSupport Not receiving two-factor authentication 2FA verification SMS codes on my device."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
+#### Example 3 (Tweet ID: `116200`)
+- **Customer Query:** "Wi-Fi button is greyed out in Settings and cannot be toggled on."
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `connectivity_wifi_bluetooth`
 - **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'connectivity_wifi_bluetooth' with high retrieval confidence (1.00).
+- **Drafted Reply:** "Connectivity problems can often be fixed with these steps: 1) Restart your router/modem if it's a Wi-Fi issue. 2) On your device, go to Settings > Wi-Fi, tap the (i) next to your network, and tap Forget This Network, then rejoin. 3) Ensure your iOS is up to date. If Bluetooth, try unpairing and re-pairing the device."
 
-#### Example 8 (Tweet ID: `115904`)
-- **Customer Query:** "iCloud backup has failed for 3 consecutive weeks stating 'Not Enough iCloud Storage'. Please fix this @AppleSupport!"
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 4 (Tweet ID: `116204`)
+- **Customer Query:** "Bluetooth cannot discover my car audio system or external speaker. Please fix this @AppleSupport!"
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `audio_sound_accessories`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'audio_sound_accessories' with high retrieval confidence (0.99).
+- **Drafted Reply:** "We're here to help with your audio concern! First, check if your device is stuck in headphone mode: plug in and unplug headphones several times. Go to Settings > Sounds & Haptics and check the ringer slider. If the issue is with AirPods, make sure both are charging properly and firmware is up to date."
 
-#### Example 9 (Tweet ID: `115906`)
-- **Customer Query:** "Locked out of my iPad by Activation Lock after resetting it, forgotten old password."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
+#### Example 5 (Tweet ID: `116210`)
+- **Customer Query:** "Wi-Fi button is greyed out in Settings and cannot be toggled on. Please fix this @AppleSupport!"
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `connectivity_wifi_bluetooth`
 - **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'connectivity_wifi_bluetooth' with high retrieval confidence (0.99).
+- **Drafted Reply:** "We'd like to help restore your connection! Try: Settings > Airplane Mode, toggle ON for 30 seconds, then OFF. If the issue persists, go to Settings > General > Transfer or Reset > Reset Network Settings. For Bluetooth devices, also check they're charged and within range."
 
-#### Example 10 (Tweet ID: `115908`)
-- **Customer Query:** "@AppleSupport Received a suspicious email claiming my iCloud was accessed from Russia with a link to verify."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 6 (Tweet ID: `116214`)
+- **Customer Query:** "@AppleSupport Bluetooth cannot discover my car audio system or external speaker."
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `audio_sound_accessories`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'audio_sound_accessories' with high retrieval confidence (1.00).
+- **Drafted Reply:** "We're here to help with your audio concern! First, check if your device is stuck in headphone mode: plug in and unplug headphones several times. Go to Settings > Sounds & Haptics and check the ringer slider. If the issue is with AirPods, make sure both are charging properly and firmware is up to date."
 
-#### Example 11 (Tweet ID: `115910`)
-- **Customer Query:** "My Apple ID has been locked for security reasons and the trusted phone number is no longer active. Please fix this @AppleSupport!"
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
+#### Example 7 (Tweet ID: `116220`)
+- **Customer Query:** "@AppleSupport Wi-Fi button is greyed out in Settings and cannot be toggled on."
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `connectivity_wifi_bluetooth`
 - **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'connectivity_wifi_bluetooth' with high retrieval confidence (1.00).
+- **Drafted Reply:** "Connectivity problems can often be fixed with these steps: 1) Restart your router/modem if it's a Wi-Fi issue. 2) On your device, go to Settings > Wi-Fi, tap the (i) next to your network, and tap Forget This Network, then rejoin. 3) Ensure your iOS is up to date. If Bluetooth, try unpairing and re-pairing the device."
 
-#### Example 12 (Tweet ID: `115912`)
-- **Customer Query:** "Not receiving two-factor authentication 2FA verification SMS codes on my device."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 8 (Tweet ID: `116224`)
+- **Customer Query:** "Bluetooth cannot discover my car audio system or external speaker."
+- **Intent:** Gold = `connectivity_wifi_bluetooth` | Predicted = `audio_sound_accessories`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'audio_sound_accessories' with high retrieval confidence (1.00).
+- **Drafted Reply:** "We're here to help with your audio concern! First, check if your device is stuck in headphone mode: plug in and unplug headphones several times. Go to Settings > Sounds & Haptics and check the ringer slider. If the issue is with AirPods, make sure both are charging properly and firmware is up to date."
 
-#### Example 13 (Tweet ID: `115914`)
-- **Customer Query:** "@AppleSupport iCloud backup has failed for 3 consecutive weeks stating 'Not Enough iCloud Storage'."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 9 (Tweet ID: `116500`)
+- **Customer Query:** "Left AirPod has zero sound and does not show charging status in the battery widget."
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `battery_power_charging`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'battery_power_charging' with high retrieval confidence (1.00).
+- **Drafted Reply:** "Battery issues can often be resolved! Please try: Settings > General > Reset > Reset All Settings (this won't delete data). Also check Settings > Battery to identify which apps are consuming the most power. If your device runs iOS 11.3+, check Battery Health for degradation status."
 
-#### Example 14 (Tweet ID: `115916`)
-- **Customer Query:** "Locked out of my iPad by Activation Lock after resetting it, forgotten old password. Please fix this @AppleSupport!"
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
-- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+#### Example 10 (Tweet ID: `116506`)
+- **Customer Query:** "AirPods disconnect randomly during workouts and reconnect after 10 seconds."
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `connectivity_wifi_bluetooth`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'connectivity_wifi_bluetooth' with high retrieval confidence (1.00).
+- **Drafted Reply:** "Connectivity problems can often be fixed with these steps: 1) Restart your router/modem if it's a Wi-Fi issue. 2) On your Airpods, go to Settings > Wi-Fi, tap the (i) next to your network, and tap Forget This Network, then rejoin. 3) Ensure your iOS is up to date. If Bluetooth, try unpairing and re-pairing the device."
 
-#### Example 15 (Tweet ID: `115918`)
-- **Customer Query:** "Received a suspicious email claiming my iCloud was accessed from Russia with a link to verify."
-- **Intent:** Gold = `apple_id_icloud_security` | Predicted = `apple_id_icloud_security`
+#### Example 11 (Tweet ID: `116508`)
+- **Customer Query:** "@AppleSupport Sound crackling in right earbud when Active Noise Cancellation or Transparency is on."
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `audio_sound_accessories`
 - **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
-- **Stated Routing Reason:** Standard troubleshooting procedure provided from verified historical precedent.
-- **Drafted Reply:** "We'd be glad to look into this with you. Start by restarting your device and ensuring your iOS is up to date. Let us know if the issue persists!"
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'audio_sound_accessories' with high retrieval confidence (1.00).
+- **Drafted Reply:** "We're here to help with your audio concern! First, check if your device is stuck in headphone mode: plug in and unplug headphones several times. Go to Settings > Sounds & Haptics and check the ringer slider. If the issue is with AirPods, make sure both are charging properly and firmware is up to date."
+
+#### Example 12 (Tweet ID: `116510`)
+- **Customer Query:** "Left AirPod has zero sound and does not show charging status in the battery widget. Please fix this @AppleSupport!"
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `battery_power_charging`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'battery_power_charging' with high retrieval confidence (0.99).
+- **Drafted Reply:** "We'd like to help with your charging concern. First, try a different Lightning/USB-C cable and power adapter. Clean the charging port gently with a soft brush. If the issue persists, try a forced restart (varies by model). Let us know your device model and iOS version for specific steps!"
+
+#### Example 13 (Tweet ID: `116516`)
+- **Customer Query:** "AirPods disconnect randomly during workouts and reconnect after 10 seconds. Please fix this @AppleSupport!"
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `connectivity_wifi_bluetooth`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'connectivity_wifi_bluetooth' with high retrieval confidence (0.99).
+- **Drafted Reply:** "We'd like to help restore your connection! Try: Settings > Airplane Mode, toggle ON for 30 seconds, then OFF. If the issue persists, go to Settings > General > Transfer or Reset > Reset Network Settings. For Bluetooth devices, also check they're charged and within range."
+
+#### Example 14 (Tweet ID: `116518`)
+- **Customer Query:** "Sound crackling in right earbud when Active Noise Cancellation or Transparency is on."
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `audio_sound_accessories`
+- **Routing:** Gold = `ESCALATE` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'audio_sound_accessories' with high retrieval confidence (1.00).
+- **Drafted Reply:** "We're here to help with your audio concern! First, check if your device is stuck in headphone mode: plug in and unplug headphones several times. Go to Settings > Sounds & Haptics and check the ringer slider. If the issue is with AirPods, make sure both are charging properly and firmware is up to date."
+
+#### Example 15 (Tweet ID: `116520`)
+- **Customer Query:** "@AppleSupport Left AirPod has zero sound and does not show charging status in the battery widget."
+- **Intent:** Gold = `audio_sound_accessories` | Predicted = `battery_power_charging`
+- **Routing:** Gold = `AUTO` | Predicted = `AUTO`
+- **Stated Routing Reason:** Standard self-service troubleshooting available for 'battery_power_charging' with high retrieval confidence (1.00).
+- **Drafted Reply:** "Battery issues can often be resolved! Please try: Settings > General > Reset > Reset All Settings (this won't delete data). Also check Settings > Battery to identify which apps are consuming the most power. If your device runs iOS 11.3+, check Battery Health for degradation status."
 
