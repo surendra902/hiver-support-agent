@@ -32,6 +32,8 @@ Evaluated across a hand-calibrated **200-example Golden Evaluation Set** (25 rea
 |:---:|:---:|
 | ![Confusion Matrix](results/confusion_matrix.png) | ![Precision vs Auto-Rate](results/precision_autorate.png) |
 
+> 📌 **Methodological Disclosure:** The red star represents the strictly measured **Empirical Operating Point (48.5% Auto-Rate / 88.7% Precision)** on the 200-example golden set. The surrounding curve represents an illustrative parametric sensitivity frontier under varying routing conservatism thresholds.
+
 ---
 
 ## Quickstart & Instant Reproduction (<1 Minute)

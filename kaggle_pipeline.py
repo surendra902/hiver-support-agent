@@ -482,11 +482,12 @@ def run_full_pipeline_and_eval(df: pd.DataFrame, golden: List[Dict[str, Any]]):
     precisions = [0.985, 0.960, 0.925, op_prec, 0.820, 0.745]
 
     plt.figure(figsize=(8, 5.5), dpi=200)
-    plt.plot(auto_rates, precisions, marker="o", color="#0071e3", linewidth=2.5, label="Precision-Coverage Frontier")
+    plt.plot(auto_rates, precisions, marker="o", color="#0071e3", linewidth=2.5,
+             label="Illustrative Frontier (Parametric Sweep)")
     plt.axvline(x=op_rate, color="#d32f2f", linestyle="--", linewidth=1.5, alpha=0.8)
     plt.axhline(y=op_prec, color="#d32f2f", linestyle=":", linewidth=1.5, alpha=0.8)
     plt.plot(op_rate, op_prec, marker="*", color="#d32f2f", markersize=14,
-             label=f"Operating Point (Auto={op_rate*100:.1f}%, Prec={op_prec*100:.1f}%)")
+             label=f"Empirical Operating Point (Auto={op_rate*100:.1f}%, Prec={op_prec*100:.1f}%)")
     plt.xlabel("Auto-Rate (% of Traffic Autonomously Handled)", fontsize=11, fontweight="bold")
     plt.ylabel("Precision on AUTO Class", fontsize=11, fontweight="bold")
     plt.title("Operating Tradeoff: Autonomous Precision vs Auto-Rate", fontsize=12, fontweight="bold", pad=12)

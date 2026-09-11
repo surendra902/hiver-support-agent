@@ -366,14 +366,15 @@ def generate_visualizations(
         precisions = [0.985, 0.960, 0.925, op_prec, 0.820, 0.745]
 
         plt.figure(figsize=(8, 5.5), dpi=200)
-        plt.plot(auto_rates, precisions, marker="o", color="#0071e3", linewidth=2.5, label="Precision-Coverage Frontier")
+        plt.plot(auto_rates, precisions, marker="o", color="#0071e3", linewidth=2.5,
+                 label="Illustrative Frontier (Parametric Sweep)")
         plt.axvline(x=op_rate, color="#d32f2f", linestyle="--", linewidth=1.5, alpha=0.8)
         plt.axhline(y=op_prec, color="#d32f2f", linestyle=":", linewidth=1.5, alpha=0.8)
         plt.plot(op_rate, op_prec, marker="*", color="#d32f2f", markersize=14,
-                 label=f"Selected Operating Point (Auto={op_rate*100:.1f}%, Prec={op_prec*100:.1f}%)")
+                 label=f"Empirical Operating Point (Auto={op_rate*100:.1f}%, Prec={op_prec*100:.1f}%)")
 
         plt.annotate(
-            f"Operating Point\nAuto-Rate: {op_rate*100:.1f}%\nPrecision: {op_prec*100:.1f}%",
+            f"Empirical Operating Point\nAuto-Rate: {op_rate*100:.1f}%\nPrecision: {op_prec*100:.1f}%",
             xy=(op_rate, op_prec),
             xytext=(op_rate + 0.04, op_prec - 0.05),
             arrowprops=dict(facecolor="#d32f2f", shrink=0.08, width=1.5, headwidth=7),
