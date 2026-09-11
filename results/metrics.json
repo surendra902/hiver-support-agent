@@ -1,48 +1,48 @@
 {
   "proposed_agent": {
     "intent": {
-      "accuracy": 0.655,
-      "macro_f1": 0.666,
-      "macro_precision": 0.746,
-      "macro_recall": 0.655
+      "accuracy": 0.745,
+      "macro_f1": 0.747,
+      "macro_precision": 0.818,
+      "macro_recall": 0.745
     },
     "routing": {
-      "auto_precision": 0.849,
-      "auto_recall": 0.62,
-      "auto_f1": 0.717,
-      "auto_rate": 0.365,
-      "cost_weighted_error": 0.74
+      "auto_precision": 0.887,
+      "auto_recall": 0.632,
+      "auto_f1": 0.738,
+      "auto_rate": 0.485,
+      "cost_weighted_error": 0.8
     },
     "reply_quality_judge": {
-      "relevance": 4.34,
-      "groundedness": 4.76,
-      "actionability": 3.48,
-      "tone_brand_fit": 4.3,
+      "relevance": 4.36,
+      "groundedness": 4.72,
+      "actionability": 3.84,
+      "tone_brand_fit": 4.24,
       "safety": 5.0,
-      "composite_1_to_5": 4.38
+      "composite_1_to_5": 4.43
     }
   },
   "simple_baseline": {
     "intent": {
-      "accuracy": 0.315,
-      "macro_f1": 0.251,
-      "macro_precision": 0.339,
-      "macro_recall": 0.315
+      "accuracy": 0.405,
+      "macro_f1": 0.379,
+      "macro_precision": 0.627,
+      "macro_recall": 0.405
     },
     "routing": {
-      "auto_precision": 0.667,
-      "auto_recall": 0.1,
-      "auto_f1": 0.174,
-      "auto_rate": 0.075,
-      "cost_weighted_error": 0.7
+      "auto_precision": 0.917,
+      "auto_recall": 0.081,
+      "auto_f1": 0.149,
+      "auto_rate": 0.06,
+      "cost_weighted_error": 0.675
     },
     "reply_quality_judge": {
-      "relevance": 3.4,
-      "groundedness": 3.36,
-      "actionability": 2.2,
-      "tone_brand_fit": 3.52,
+      "relevance": 3.44,
+      "groundedness": 3.3,
+      "actionability": 2.24,
+      "tone_brand_fit": 3.6,
       "safety": 5.0,
-      "composite_1_to_5": 3.5
+      "composite_1_to_5": 3.52
     }
   },
   "trivial_baseline": {
@@ -57,15 +57,15 @@
       "auto_recall": 0.0,
       "auto_f1": 0.0,
       "auto_rate": 0.0,
-      "cost_weighted_error": 0.5
+      "cost_weighted_error": 0.68
     },
     "reply_quality_judge": {
-      "relevance": 3.2,
+      "relevance": 3.28,
       "groundedness": 3.0,
       "actionability": 2.0,
       "tone_brand_fit": 5.0,
       "safety": 5.0,
-      "composite_1_to_5": 3.64
+      "composite_1_to_5": 3.66
     }
   },
   "pairwise_win_rates": {

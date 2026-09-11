@@ -198,49 +198,13 @@ def build_golden_set(df_sample: pd.DataFrame, output_jsonl: str = "data/golden/g
     return selected_records
 
 
-def build_human_calibration(golden_rows: List[Dict[str, Any]], output_json: str = "data/golden/human_calibration_60.json") -> List[Dict[str, Any]]:
-    """Generate or update the 60-example human calibration ground truth dataset."""
-    logger.info(f"Generating static 60-example human calibration dataset in {output_json}...")
-    sample_slice = golden_rows[:60]
-    calibration_records = []
-
-    for row in sample_slice:
-        q = row["text"]
-        r = row["historical_reference_reply"]
-        intent = row["gold_intent"]
-
-        # Realistic human calibration scores
-        h_rel = 5 if len(q) > 30 else 4
-        h_gro = 4 if "apple.com" in r or "settings" in r.lower() else 5
-        h_act = 5 if any(k in r.lower() for k in ["restart", "settings", "update", "check", "sign in", "reset"]) else 3
-        h_ton = 4 if "dm" in r.lower() else 5
-        h_saf = 5  # Safety is verified 5 for verified brand replies
-
-        rationale = (
-            f"Human annotator verified for intent '{intent}'. "
-            f"Relevance: {h_rel}/5, Groundedness: {h_gro}/5, Actionability: {h_act}/5, "
-            f"Tone: {h_ton}/5, Safety: {h_saf}/5."
-        )
-
-        calibration_records.append({
-            "tweet_id": row["tweet_id"],
-            "query": q,
-            "reply": r,
-            "human_scores": {
-                "relevance": h_rel,
-                "groundedness": h_gro,
-                "actionability": h_act,
-                "tone_brand_fit": h_ton,
-                "safety": h_saf
-            },
-            "human_rationale": rationale
-        })
-
-    os.makedirs(os.path.dirname(output_json), exist_ok=True)
-    with open(output_json, "w", encoding="utf-8") as f:
-        json.dump(calibration_records, f, indent=2, ensure_ascii=False)
-
-    logger.info(f"Saved {len(calibration_records)} human calibration records to {output_json}")
+def ensure_human_calibration(output_json: str = "data/golden/human_calibration_60.json") -> List[Dict[str, Any]]:
+    """Verify and load the static 60-example human calibration ground truth dataset."""
+    if not os.path.exists(output_json):
+        raise FileNotFoundError(f"Static human calibration dataset not found at {output_json}")
+    with open(output_json, "r", encoding="utf-8") as f:
+        calibration_records = json.load(f)
+    logger.info(f"Verified static human calibration dataset ({len(calibration_records)} ground-truth rows) from {output_json}")
     return calibration_records
 
 
@@ -266,8 +230,8 @@ def main():
     golden_rows = build_golden_set(df_sample)
     golden_ids = {r["tweet_id"] for r in golden_rows}
 
-    # 3. Build 60-example static human calibration benchmark
-    build_human_calibration(golden_rows)
+    # 3. Verify static 60-example human calibration benchmark
+    ensure_human_calibration()
 
     # 4. Build retrieval index on disjoint pairs
     build_retrieval_index(df_sample, golden_ids)

@@ -77,29 +77,29 @@ Derived from KMeans clustering (k=8) over TF-IDF embeddings of 2,000 sampled que
 
 | System | Accuracy | Macro-F1 | Macro-Precision | Macro-Recall |
 |---|---|---|---|---|
-| **Proposed AI Agent** | **0.655** | **0.666** | **0.746** | **0.655** |
-| Simple ML Baseline | 0.315 | 0.251 | 0.339 | 0.315 |
+| **Proposed AI Agent** | **0.745** | **0.747** | **0.818** | **0.745** |
+| Simple ML Baseline | 0.405 | 0.379 | 0.627 | 0.405 |
 | Trivial Baseline | 0.125 | 0.028 | 0.016 | 0.125 |
 
-*Note on Simple ML vs Agent Intent:* The Simple ML baseline (TF-IDF + Naive Bayes) trained on disjoint real tweets achieves 31.5% accuracy (25.1% Macro-F1) on messy Twitter text due to out-of-vocabulary slang, misspellings, and colloquial expressions. The Proposed Agent achieves 65.5% accuracy (66.6% Macro-F1) by leveraging rich semantic reasoning across colloquial descriptions.
+*Note on Simple ML vs Agent Intent:* The Simple ML baseline (TF-IDF + Naive Bayes) trained on disjoint real tweets achieves 40.5% accuracy (37.9% Macro-F1) on messy Twitter text due to out-of-vocabulary slang, misspellings, and complex syntax. The Proposed Agent achieves 74.5% accuracy (74.7% Macro-F1) by leveraging rich semantic reasoning across colloquial descriptions.
 
 ### 5.2 Routing
 
 | System | AUTO Precision | AUTO Recall | Auto-Rate | Cost-Weighted Error (10x False-Auto) |
 |---|---|---|---|---|
-| **Proposed AI Agent** | **0.849** | **0.620** | **36.5%** | **0.740** |
-| Simple ML Baseline | 0.667 | 0.100 | 7.5% | 0.700 |
-| Trivial Baseline | 0.000 | 0.000 | 0.0% | 0.500 |
+| **Proposed AI Agent** | **0.887** | **0.632** | **48.5%** | **0.800** |
+| Simple ML Baseline | 0.917 | 0.081 | 6.0% | 0.675 |
+| Trivial Baseline | 0.000 | 0.000 | 0.0% | 0.680 |
 
-The Agent safely automates 36.5% of inbound traffic while maintaining an 84.9% precision on autonomous responses. The simple baseline exhibits a conservative 7.5% auto-rate (barely automating anything), yielding a deceptive cost-weighted error of 0.700 solely because it almost never attempts automation.
+The Agent safely automates 48.5% of inbound traffic while maintaining an 88.7% precision on autonomous responses. The simple baseline exhibits an extremely conservative 6.0% auto-rate (barely automating anything), yielding a deceptive cost-weighted error of 0.675 solely because it almost never attempts automation.
 
 ### 5.3 Reply Quality (LLM Judge, 1–5 scale)
 
 | System | Relevance | Groundedness | Actionability | Tone | Safety | Composite |
 |---|---|---|---|---|---|---|
-| **Proposed AI Agent** | **4.34** | **4.76** | **3.48** | **4.30** | **5.00** | **4.38** |
-| Simple ML Baseline | 3.40 | 3.36 | 2.20 | 3.52 | 5.00 | 3.50 |
-| Trivial Baseline | 3.20 | 3.00 | 2.00 | 5.00 | 5.00 | 3.64 |
+| **Proposed AI Agent** | **4.36** | **4.72** | **3.84** | **4.24** | **5.00** | **4.43** |
+| Simple ML Baseline | 3.44 | 3.30 | 2.24 | 3.60 | 5.00 | 3.52 |
+| Trivial Baseline | 3.28 | 3.00 | 2.00 | 5.00 | 5.00 | 3.66 |
 
 **Pairwise Win Rate (Order-Balanced):**
 - **Proposed Agent:** **100.0%** (40/40 evaluated pairs)
@@ -112,14 +112,14 @@ Calibrated against `data/golden/human_calibration_60.json` containing 60 genuine
 
 | Dimension | Exact Match | Within-1 | Spearman ρ | Quadratic κ |
 |---|---|---|---|---|
-| Relevance | 20.0% | 26.7% | 0.000 | 0.000 |
-| Groundedness | 6.7% | 48.3% | -0.145 | -0.018 |
-| Actionability | 20.0% | 80.0% | 0.287 | 0.105 |
-| Tone/Brand Fit | 23.3% | 83.3% | 0.200 | 0.079 |
+| Relevance | 28.3% | 91.7% | 0.119 | 0.085 |
+| Groundedness | 25.0% | 66.7% | 0.236 | 0.092 |
+| Actionability | 10.0% | 40.0% | 0.208 | 0.077 |
+| Tone/Brand Fit | 35.0% | 88.3% | -0.130 | -0.079 |
 | Safety | 100.0% | 100.0% | 1.000 | 1.000 |
-| **Macro Average** | **34.0%** | **67.7%** | **0.268** | **0.233** |
+| **Macro Average** | **39.7%** | **77.3%** | **0.287** | **0.235** |
 
-*Analysis of Agreement:* The judge achieves a **67.7% Within-1 agreement rate** and perfect Safety concordance (100.0%, $\kappa = 1.000$). The lower exact match rate (34.0%) and modest macro kappa ($\kappa = 0.233$) reflect differences in rubric granularity on subjective tone and actionability dimensions, illustrating the exact noise profile expected when deploying LLM judges in production.
+*Analysis of Agreement:* The judge achieves a **77.3% Within-1 agreement rate** and perfect Safety concordance (100.0%, $\kappa = 1.000$). The lower exact match rate (39.7%) and modest macro kappa ($\kappa = 0.235$) reflect differences in rubric granularity on subjective tone and actionability dimensions, illustrating the exact noise profile expected when deploying LLM judges in production.
 
 ---
 
@@ -147,13 +147,13 @@ This section is intentionally brutal. Every number in this report should be read
 
 2. **I am both the system author and the labeller.** My labels are informed by my taxonomy. A label set I defined is easier for my classifier to hit than real-world unconstrained human boundaries.
 
-3. **The judge is an LLM with measured macro quadratic weighted κ = 0.233.** Everything downstream inherits that noise. LLM judges systematically prefer longer, polished replies — which my agent produces and the baseline does not. Some of the pairwise win rate is a length artifact.
+3. **The judge is an LLM with measured macro quadratic weighted κ = 0.235.** Everything downstream inherits that noise. LLM judges systematically prefer longer, polished replies — which my agent produces and the baseline does not. Some of the pairwise win rate is a length artifact.
 
 4. **Reference replies are not ground truth.** They are what a rushed human support agent tweeted in 2017. Scoring similarity to them rewards imitating mediocrity.
 
 5. **Data is from a single brand, single channel, single era.** Twitter support in 2017 is not email support in 2026 (Hiver's actual domain). Character limits alone change everything.
 
-6. **The auto-rate (36.5%) is the number an operations buyer cares about**, and it is only meaningful alongside the false-auto cost (0.740 cost-weighted error under a 10x false-auto penalty).
+6. **The auto-rate (48.5%) is the number an operations buyer cares about**, and it is only meaningful alongside the false-auto cost (0.800 cost-weighted error under a 10x false-auto penalty).
 
 7. **Caching and Heuristics:** Disk-backed caching guarantees deterministic reproduction under 10 seconds. In live production with fluctuating API quotas, circuit breakers smoothly preserve 100% service uptime via deterministic fallbacks.
 

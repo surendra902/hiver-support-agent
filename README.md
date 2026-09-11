@@ -13,16 +13,16 @@ Evaluated across a hand-calibrated **200-example Golden Evaluation Set** (25 rea
 
 | Metric | Proposed AI Agent | Simple ML Baseline (TF-IDF + Naive Bayes) | Trivial Baseline (Majority / Always Escalate) |
 |---|---|---|---|
-| **Intent Macro-F1** | **0.666** | 0.251 (shallow lexical fit) | 0.028 |
-| **Intent Accuracy** | **0.655** | 0.315 | 0.125 |
-| **AUTO Route Precision** | **0.849** | 0.667 | 0.000 (Always Escalate) |
-| **AUTO Route Recall** | **0.620** | 0.100 | 0.000 |
-| **Autonomous Rate** | **36.5%** | 7.5% | 0.0% |
-| **Cost-Weighted Error (10x)** | **0.740** | 0.700 (avoids auto) | 0.500 (Safe / Slow) |
-| **Judge Composite Score (1–5)** | **4.38 / 5.0** | 3.50 / 5.0 | 3.64 / 5.0 |
+| **Intent Macro-F1** | **0.747** | 0.379 (shallow lexical fit) | 0.028 |
+| **Intent Accuracy** | **0.745** | 0.405 | 0.125 |
+| **AUTO Route Precision** | **0.887** | 0.917 (only 6% auto-rate) | 0.000 (Always Escalate) |
+| **AUTO Route Recall** | **0.632** | 0.081 | 0.000 |
+| **Autonomous Rate** | **48.5%** | 6.0% | 0.0% |
+| **Cost-Weighted Error (10x)** | **0.800** | 0.675 (avoids auto) | 0.680 (Safe / Slow) |
+| **Judge Composite Score (1–5)** | **4.43 / 5.0** | 3.52 / 5.0 | 3.66 / 5.0 |
 | **Pairwise Win Rate vs Simple** | **100.0%** | 0.0% | — |
 
-> ⚠️ **Evaluation Caveats:** See [REPORT.md § "What is misleading about my headline number?"](REPORT.md) for a candid critique regarding sample confidence intervals ($\pm 6.5\%$), LLM judge length bias, human-judge calibration ($\kappa = 0.233$), and channel differences between Twitter 2017 and modern email support.
+> ⚠️ **Evaluation Caveats:** See [REPORT.md § "What is misleading about my headline number?"](REPORT.md) for a candid critique regarding sample confidence intervals ($\pm 6.5\%$), LLM judge length bias, human-judge calibration ($\kappa = 0.235$), and channel differences between Twitter 2017 and modern email support.
 
 ---
 
@@ -99,9 +99,9 @@ Incoming Customer Tweet
 
 - **[REPORT.md](REPORT.md)**: Full 6-page technical report covering problem framing, brand selection evidence, baseline comparisons, top 5 failure modes with real Tweet IDs, and the mandatory self-critique.
 - **[DECISIONS.md](DECISIONS.md)**: Plain list of 12 non-obvious engineering decisions, documented with alternatives considered, rationale, and trade-offs.
-- **[data/golden/labelling_notes.md](data/golden/labelling_notes.md)**: Annotation protocol, boundary conflict rules, and 90% intra-annotator agreement measurements.
+- **[data/golden/labelling_notes.md](data/golden/labelling_notes.md)**: Annotation protocol, boundary conflict rules, and 95% intra-annotator consistency measurements.
 - **[results/failures.md](results/failures.md)**: Root-cause failure analysis with real Tweet IDs and diagnostic hypotheses.
-- **[results/judge_agreement.json](results/judge_agreement.json)**: Human annotator vs. LLM-as-a-judge correlation metrics (Within-1 match: 91.0%, Actionability Quadratic $\kappa = 0.600$, Safety: 100%).
+- **[results/judge_agreement.json](results/judge_agreement.json)**: Human annotator vs. LLM-as-a-judge correlation metrics (Within-1 match: 77.3%, Macro Quadratic $\kappa = 0.235$, Safety: 100%).
 
 ---
 
@@ -116,9 +116,10 @@ hiver-support-agent/
 ├── requirements.txt                    # Pinned dependencies
 ├── config.yaml                         # Hyperparameters, seeds, thresholds
 ├── data/
-│   ├── sample/brand_sample.parquet     # 1,200 Turn-1 resolution pairs
-│   ├── golden/golden_v1.jsonl          # 200 hand-calibrated evaluation rows
-│   ├── golden/labelling_notes.md       # Annotation boundary rules
+│   ├── sample/brand_sample.parquet     # 10,000 genuine AppleSupport Turn-1 resolution pairs
+│   ├── golden/golden_v1.jsonl          # 200 hand-calibrated real evaluation rows (with label_rationale)
+│   ├── golden/human_calibration_60.json# 60 genuine human calibration ground truth ratings
+│   ├── golden/labelling_notes.md       # Annotation boundary rules and data provenance
 │   └── cache/llm_cache.json            # Committed LLM response cache
 ├── src/
 │   ├── agent.py                        # Core Classify → Retrieve → Draft → Route pipeline
@@ -130,9 +131,9 @@ hiver-support-agent/
 │   ├── schemas.py                      # Pydantic data models for all I/O
 │   └── taxonomy.py                     # 8-intent definitions and exemplars
 ├── scripts/
-│   ├── audit_and_verify.py             # 40-check automated compliance audit
-│   ├── build_sample_and_golden.py      # Deterministic dataset artifact generator
-│   ├── calibrate_judge.py              # Human vs judge calibration runner
+│   ├── audit_and_verify.py             # 47-check forensic compliance audit
+│   ├── build_sample_and_golden.py      # Genuine TWCS data extractor and golden set generator
+│   ├── calibrate_judge.py              # Human vs judge calibration runner on human_calibration_60.json
 │   └── label_tool.py                   # Terminal annotation micro-CLI
 ├── results/
 │   ├── metrics.json                    # Full system vs baseline metrics
