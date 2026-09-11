@@ -1,31 +1,31 @@
 {
   "relevance": {
-    "exact_match_rate": 0.283,
-    "within_1_rate": 0.917,
-    "spearman_rho": 0.119,
-    "spearman_pvalue": 0.3659,
-    "quadratic_weighted_kappa": 0.085
+    "exact_match_rate": 0.2,
+    "within_1_rate": 0.267,
+    "spearman_rho": 0.0,
+    "spearman_pvalue": 1.0,
+    "quadratic_weighted_kappa": 0.0
   },
   "groundedness": {
-    "exact_match_rate": 0.25,
-    "within_1_rate": 0.667,
-    "spearman_rho": 0.236,
-    "spearman_pvalue": 0.07004,
-    "quadratic_weighted_kappa": 0.092
+    "exact_match_rate": 0.067,
+    "within_1_rate": 0.483,
+    "spearman_rho": -0.145,
+    "spearman_pvalue": 0.26842,
+    "quadratic_weighted_kappa": -0.018
   },
   "actionability": {
-    "exact_match_rate": 0.1,
-    "within_1_rate": 0.4,
-    "spearman_rho": 0.208,
-    "spearman_pvalue": 0.1104,
-    "quadratic_weighted_kappa": 0.077
+    "exact_match_rate": 0.2,
+    "within_1_rate": 0.8,
+    "spearman_rho": 0.287,
+    "spearman_pvalue": 0.0264,
+    "quadratic_weighted_kappa": 0.105
   },
   "tone_brand_fit": {
-    "exact_match_rate": 0.35,
-    "within_1_rate": 0.883,
-    "spearman_rho": -0.13,
-    "spearman_pvalue": 0.32207,
-    "quadratic_weighted_kappa": -0.079
+    "exact_match_rate": 0.233,
+    "within_1_rate": 0.833,
+    "spearman_rho": 0.2,
+    "spearman_pvalue": 0.12579,
+    "quadratic_weighted_kappa": 0.079
   },
   "safety": {
     "exact_match_rate": 1.0,
@@ -35,52 +35,52 @@
     "quadratic_weighted_kappa": 1.0
   },
   "macro_averages": {
-    "mean_exact_match": 0.397,
-    "mean_within_1": 0.773,
-    "mean_spearman_rho": 0.287,
-    "mean_quadratic_kappa": 0.235
+    "mean_exact_match": 0.34,
+    "mean_within_1": 0.677,
+    "mean_spearman_rho": 0.268,
+    "mean_quadratic_kappa": 0.233
   },
   "sample_size": 60,
   "top_discrepancies": [
     {
-      "tweet_id": "1478308",
-      "query": "Hey , i have iPhone keep restarting again and again , the touchpad is freezing stuck on passcode screen Also the Itunes can't recognize the iphone and when i use DFU to restore the Iphone i got error 4013 HELP!! Please : ( .",
-      "dimension": "actionability",
-      "human_score": 4,
-      "judge_score": 2,
-      "judge_rationale": "Reply lacks specific troubleshooting steps"
+      "tweet_id": "782779",
+      "query": "How does #applecare for iPhone X consider back glass damage? Screen Repair cost or Other Repair cost? @user @user",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Reply partially addresses the customer's screen concern"
     },
     {
-      "tweet_id": "2038171",
-      "query": "how do i report a High Sierra bug? full-screen preview grid doesn't allow me to scroll.",
+      "tweet_id": "2548671",
+      "query": "I processed a screen replacement service on 22/10/17 and the box still hasn\u2019t arrived to post to you???",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Reply partially addresses the customer's screen concern"
+    },
+    {
+      "tweet_id": "1721289",
+      "query": "smashed my iPad, have Apple care, store out my color, won\u2019t let me exchange different color. Profoundly customer unfriendly.",
+      "dimension": "relevance",
+      "human_score": 5,
+      "judge_score": 3,
+      "judge_rationale": "Reply partially addresses the customer's general concern"
+    },
+    {
+      "tweet_id": "2293542",
+      "query": "great quality bands. My watch fell of my wrist while buckled in. Now the screen is completely shattered and it came off too. I do t know how you can sell something like that. @user",
       "dimension": "groundedness",
       "human_score": 5,
       "judge_score": 3,
       "judge_rationale": "Reply provides plausible but unverified advice"
     },
     {
-      "tweet_id": "1670137",
-      "query": "why doesn\u2019t @user work with music part of control centre or show up on my lock screen since latest update?",
-      "dimension": "groundedness",
+      "tweet_id": "2293095",
+      "query": "@user I had the phone since April. No one there can tell me why the phone is not covered by warranty and why Apple won't replace it. They say could be water damage or broken screen, but I haven't had the phone in water nor screen was not damaged when sent.",
+      "dimension": "relevance",
       "human_score": 5,
       "judge_score": 3,
-      "judge_rationale": "Reply provides plausible but unverified advice"
-    },
-    {
-      "tweet_id": "2674181",
-      "query": "awesome job on new IOS, love the relentless nag screen to update an app I don\u2019t have &amp; the 5 hrs less batt life is handy too",
-      "dimension": "groundedness",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Reply provides plausible but unverified advice"
-    },
-    {
-      "tweet_id": "518351",
-      "query": "my iPhone keeps bringing this up every couple minutes then back to home screen!! Help?? I updated and all?? [URL]",
-      "dimension": "groundedness",
-      "human_score": 5,
-      "judge_score": 3,
-      "judge_rationale": "Reply provides plausible but unverified advice"
+      "judge_rationale": "Reply partially addresses the customer's screen concern"
     }
   ]
 }

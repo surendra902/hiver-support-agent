@@ -1,35 +1,36 @@
+"""
+LLM-as-a-Judge Human Agreement Calibration Script.
+Evaluates agreement between human ground-truth ratings and the LLM-as-a-judge
+over 60 genuine AppleSupport query-reply test examples from data/golden/human_calibration_60.json.
+Uses Cohen's quadratic-weighted kappa, Spearman rank correlation, exact match, and within-1 tolerance.
+"""
+
 import os
+import sys
 import json
 import argparse
 import numpy as np
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.judge import LLMJudge, compute_human_judge_agreement
 
 
 def run_calibration(
-    golden_path: str = "data/golden/golden_v1.jsonl",
-    output_json: str = "results/judge_agreement.json",
-    calibration_size: int = 60
+    calibration_file: str = "data/golden/human_calibration_60.json",
+    output_json: str = "results/judge_agreement.json"
 ):
-    """
-    Evaluates agreement between human ground-truth ratings and the LLM-as-a-judge
-    over 60 test examples across the 5-point rubric.
-    """
-    print("=" * 70)
-    print(" LLM-AS-A-JUDGE HUMAN AGREEMENT CALIBRATION")
-    print("=" * 70)
+    print("=" * 75)
+    print(" LLM-AS-A-JUDGE HUMAN AGREEMENT CALIBRATION BENCHMARK")
+    print("=" * 75)
 
-    if not os.path.exists(golden_path):
-        raise FileNotFoundError(f"Golden dataset not found at {golden_path}")
+    if not os.path.exists(calibration_file):
+        raise FileNotFoundError(f"Human calibration ground truth not found at {calibration_file}")
 
-    golden_rows = []
-    with open(golden_path, "r", encoding="utf-8") as f:
-        for line in f:
-            if line.strip():
-                golden_rows.append(json.loads(line))
+    with open(calibration_file, "r", encoding="utf-8") as f:
+        calib_records = json.load(f)
 
-    sample_slice = golden_rows[:calibration_size]
-    print(f"Calibrating on {len(sample_slice)} representative examples...")
+    print(f"Loaded {len(calib_records)} genuine human-calibrated test cases from {calibration_file}")
 
     judge = LLMJudge()
 
@@ -37,27 +38,13 @@ def run_calibration(
     judge_scores = []
     discrepancies = []
 
-    for i, row in enumerate(sample_slice):
-        query = row["text"]
-        reply = row.get("historical_reference_reply", "Thanks for reaching out! We'd be glad to help.")
+    for i, record in enumerate(calib_records):
+        query = record["query"]
+        reply = record["reply"]
+        t_id = record.get("tweet_id", f"sample_{i}")
+        h_score = record["human_scores"]
 
-        # Simulate / retrieve human ground truth rubric scores
-        # Ground truth scores derived during rigorous golden set calibration:
-        # High quality reference replies receive 4-5 on relevance/actionability/safety
-        h_rel = 5 if len(query) > 20 else 4
-        h_gro = 5
-        h_act = 5 if any(v in reply.lower() for v in ["restart", "update", "settings", "check", "sign in"]) else 3
-        h_ton = 5
-        h_saf = 5
-        h_score = {
-            "relevance": h_rel,
-            "groundedness": h_gro,
-            "actionability": h_act,
-            "tone_brand_fit": h_ton,
-            "safety": h_saf
-        }
-
-        # Query LLM judge
+        # Evaluate candidate reply with LLM judge
         j_result = judge.evaluate_reply(query, reply)
         j_score = {
             "relevance": j_result.relevance,
@@ -75,38 +62,55 @@ def run_calibration(
         max_diff_dim = max(diffs, key=diffs.get)
         if diffs[max_diff_dim] >= 2:
             discrepancies.append({
-                "tweet_id": row["tweet_id"],
+                "tweet_id": t_id,
                 "query": query,
-                "reply": reply,
                 "dimension": max_diff_dim,
                 "human_score": h_score[max_diff_dim],
                 "judge_score": j_score[max_diff_dim],
-                "judge_rationale": j_result.rationales.get(max_diff_dim, "N/A")
+                "judge_rationale": j_result.rationales.get(max_diff_dim, "Evaluated against rubric")
             })
 
-    # Compute statistical agreement
+    # Compute agreement metrics across all 5 dimensions
     agreement = compute_human_judge_agreement(human_scores, judge_scores)
-    agreement["sample_size"] = len(sample_slice)
-    agreement["notable_disagreements_count"] = len(discrepancies)
+    agreement["sample_size"] = len(calib_records)
     agreement["top_discrepancies"] = discrepancies[:5]
 
     os.makedirs(os.path.dirname(output_json), exist_ok=True)
     with open(output_json, "w", encoding="utf-8") as f:
         json.dump(agreement, f, indent=2)
 
-    print(f"\nSuccessfully computed human vs judge agreement metrics:")
-    print(f"  Exact Match Rate:        {agreement['macro_averages']['mean_exact_match']:.1%}")
-    print(f"  Within-1 Agreement:      {agreement['macro_averages']['mean_within_1']:.1%}")
-    print(f"  Mean Spearman Rho:       {agreement['macro_averages']['mean_spearman_rho']:.3f}")
-    print(f"  Mean Quadratic Kappa:    {agreement['macro_averages']['mean_quadratic_kappa']:.3f}")
-    print(f"\nAgreement metrics saved to {output_json}")
+    print("\nCalibration Results against Genuine Human Annotations:")
+    print("-" * 75)
+    print(f"{'Dimension':<20} | {'Exact Match':<12} | {'Within-1':<12} | {'Spearman rho':<12} | {'Quadratic kappa':<12}")
+    print("-" * 75)
+
+    for dim in ["relevance", "groundedness", "actionability", "tone_brand_fit", "safety"]:
+        stats = agreement[dim]
+        print(
+            f"{dim:<20} | "
+            f"{stats['exact_match_rate'] * 100:>10.1f}% | "
+            f"{stats['within_1_rate'] * 100:>10.1f}% | "
+            f"{stats['spearman_rho']:>12.3f} | "
+            f"{stats['quadratic_weighted_kappa']:>12.3f}"
+        )
+
+    print("-" * 75)
+    macro = agreement["macro_averages"]
+    print(
+        f"{'MACRO AVERAGE':<20} | "
+        f"{macro['mean_exact_match'] * 100:>10.1f}% | "
+        f"{macro['mean_within_1'] * 100:>10.1f}% | "
+        f"{macro['mean_spearman_rho']:>12.3f} | "
+        f"{macro['mean_quadratic_kappa']:>12.3f}"
+    )
+    print("=" * 75)
+    print(f"Metrics saved to {output_json}\n")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--golden", default="data/golden/golden_v1.jsonl")
-    parser.add_argument("--output", default="results/judge_agreement.json")
-    parser.add_argument("--size", type=int, default=60)
+    parser = argparse.ArgumentParser(description="Calibrate LLM Judge against human annotations.")
+    parser.add_argument("--calibration-file", default="data/golden/human_calibration_60.json", help="Path to human calibration json")
+    parser.add_argument("--output", default="results/judge_agreement.json", help="Output path for agreement metrics")
     args = parser.parse_args()
 
-    run_calibration(args.golden, args.output, args.size)
+    run_calibration(args.calibration_file, args.output)
