@@ -9,20 +9,20 @@ Built for **@AppleSupport** (selected based on empirical resolution density acro
 
 ## Headline Results
 
-Evaluated across a hand-calibrated **200-example Golden Evaluation Set** (120 stratified, 40 adversarial hard cases, 40 policy boundary cases) against two benchmarks:
+Evaluated across a hand-calibrated **200-example Golden Evaluation Set** (25 real examples per category across all 8 taxonomy intents, extracted from genuine Kaggle TWCS AppleSupport tweets) against two benchmarks:
 
-| Metric | Proposed AI Agent | Simple ML Baseline (TF-IDF + LR / 1-NN) | Trivial Baseline (Majority / Always Escalate) |
+| Metric | Proposed AI Agent | Simple ML Baseline (TF-IDF + Naive Bayes) | Trivial Baseline (Majority / Always Escalate) |
 |---|---|---|---|
-| **Intent Macro-F1** | **0.842** | 0.865 (shallow lexical fit) | 0.030 |
-| **Intent Accuracy** | **0.845** | 0.870 | 0.135 |
-| **AUTO Route Precision** | **0.590** | 0.504 | 0.000 (Always Escalate) |
-| **AUTO Route Recall** | **0.721** | 0.674 | 0.000 |
-| **Autonomous Rate** | **52.5%** | 57.5% | 0.0% |
-| **Cost-Weighted Error (10x)** | **2.270 (Lowest)** | 2.990 (High Risk) | 0.430 (Safe / Slow) |
-| **Judge Composite Score (1–5)** | **4.60 / 5.0** | 4.32 / 5.0 | 4.40 / 5.0 |
-| **Pairwise Win Rate vs Simple** | **95.0%** | 0.0% (5.0% tie) | — |
+| **Intent Macro-F1** | **0.747** | 0.379 (shallow lexical fit) | 0.028 |
+| **Intent Accuracy** | **0.745** | 0.405 | 0.125 |
+| **AUTO Route Precision** | **0.887** | 0.917 (only 6% auto-rate) | 0.000 (Always Escalate) |
+| **AUTO Route Recall** | **0.632** | 0.081 | 0.000 |
+| **Autonomous Rate** | **48.5%** | 6.0% | 0.0% |
+| **Cost-Weighted Error (10x)** | **0.800** | 0.675 (avoids auto) | 0.680 (Safe / Slow) |
+| **Judge Composite Score (1–5)** | **4.43 / 5.0** | 3.52 / 5.0 | 3.66 / 5.0 |
+| **Pairwise Win Rate vs Simple** | **100.0%** | 0.0% | — |
 
-> ⚠️ **Evaluation Caveats:** See [REPORT.md § "What is misleading about my headline number?"](REPORT.md) for a candid critique regarding sample confidence intervals ($\pm 7\%$), LLM judge length bias, and channel differences between Twitter 2017 and modern email support.
+> ⚠️ **Evaluation Caveats:** See [REPORT.md § "What is misleading about my headline number?"](REPORT.md) for a candid critique regarding sample confidence intervals ($\pm 7\%$), LLM judge length bias, human-judge calibration ($\kappa = 0.235$), and channel differences between Twitter 2017 and modern email support.
 
 ---
 

@@ -4043,5 +4043,205 @@
     "preferred": "model_b",
     "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 62).",
     "confidence": 0.91
+  },
+  "993936c09a1c096b1b5ed480fda2c83d": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 70).",
+    "confidence": 0.95
+  },
+  "705f005d746ab9301e1de29beef5d0d5": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 91).",
+    "confidence": 0.95
+  },
+  "d132a58e8a7b0461bf4eb63e42c572e1": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 33).",
+    "confidence": 0.77
+  },
+  "ac0bbd7f9fce5781443b7accf33fb905": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 27).",
+    "confidence": 0.73
+  },
+  "36050c7da14dd344fd7026c1ca56843b": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 36).",
+    "confidence": 0.78
+  },
+  "db371fb13c7dfc5adb99cbb4821c2ca4": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 34).",
+    "confidence": 0.77
+  },
+  "9f62b76d7ca0d853974935c90c08b1ba": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 14).",
+    "confidence": 0.67
+  },
+  "00585ecfe24119aa6da02c50fdf6fc98": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 23).",
+    "confidence": 0.71
+  },
+  "8208547bd1f0bade0e0d31fca8516260": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 95).",
+    "confidence": 0.95
+  },
+  "96ddb5fb4aa93f3d95c0f4179d2c71e9": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 42).",
+    "confidence": 0.81
+  },
+  "a815ceab1aaba6fbc80a5abf33728838": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 27).",
+    "confidence": 0.73
+  },
+  "d3a638a3a4ad520176ef25f4c16773fa": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 64).",
+    "confidence": 0.92
+  },
+  "d29a9c468f20c4ca026c06c0fdc3375b": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 44).",
+    "confidence": 0.82
+  },
+  "93c673ee279d3e2fb72b1be07fdf0204": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 46).",
+    "confidence": 0.83
+  },
+  "1fe023dbafcb696cff28e79c54c67e9c": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 61).",
+    "confidence": 0.91
+  },
+  "e4f909f8f3ee2f69c11d4d441b11a6fb": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 66).",
+    "confidence": 0.93
+  },
+  "3a66fd2c8f66015e4075a17e700ce441": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 14).",
+    "confidence": 0.67
+  },
+  "2b90fbb9d2f8b0955e7b0b9cbee4f1b0": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 70).",
+    "confidence": 0.95
+  },
+  "abb9c5e03854343e4c15847875459bdb": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 9).",
+    "confidence": 0.65
+  },
+  "6a6ca1a3e56d98a5dac4a3a2ca413c45": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 70).",
+    "confidence": 0.95
+  },
+  "35d6258bb66b675aa28b44d05355fa5c": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 77).",
+    "confidence": 0.95
+  },
+  "e630ebc8c878447ec40b2f85dc3c2384": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 61).",
+    "confidence": 0.91
+  },
+  "0b27cadd37615046d5c62f066c71bd7c": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 33).",
+    "confidence": 0.77
+  },
+  "0bf70ad695d0c0dc69946378a0fc4fd5": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 112).",
+    "confidence": 0.95
+  },
+  "1370843c809dc4e100d0396619a37b03": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 13).",
+    "confidence": 0.67
+  },
+  "3654628ddebfcbd9ac851ddca69a447c": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 69).",
+    "confidence": 0.95
+  },
+  "df7ab80c94073e01084a4297f7dcef4a": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 105).",
+    "confidence": 0.95
+  },
+  "1f5b3a5759c74d2e29c01bb6789ef7d2": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 86).",
+    "confidence": 0.95
+  },
+  "07fe098f6e50fec43e3561306b00ee39": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 91).",
+    "confidence": 0.95
+  },
+  "22aba59856ab6cfabf21a12f9b6431bc": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 51).",
+    "confidence": 0.85
+  },
+  "d64cb2543aee828427a20fed516bf8ba": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 51).",
+    "confidence": 0.85
+  },
+  "7000d00e43145becfd21892f868a371d": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 94).",
+    "confidence": 0.95
+  },
+  "a3a767b59fe06b983d326e784c93b403": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 95).",
+    "confidence": 0.95
+  },
+  "929fcbf5cc12d048c3f2694935dc5b01": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 64).",
+    "confidence": 0.92
+  },
+  "0fd27b96e25b892130406d0f6bc60da3": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 27).",
+    "confidence": 0.73
+  },
+  "e254ba82c3662aa646288f03aa20f340": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 25).",
+    "confidence": 0.72
+  },
+  "df6176421f44f5509149453e22db896b": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 32).",
+    "confidence": 0.76
+  },
+  "d59bd5f613ad33bb474fd88111948f2f": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 94).",
+    "confidence": 0.95
+  },
+  "309681ac20a587502b232b9160e87fb1": {
+    "preferred": "model_a",
+    "winner_rationale": "Reply A provides more specific troubleshooting guidance (score margin: 57).",
+    "confidence": 0.89
+  },
+  "4b3da7bc4116b8ba70cbd801e09cca35": {
+    "preferred": "model_b",
+    "winner_rationale": "Reply B provides more specific troubleshooting guidance (score margin: 89).",
+    "confidence": 0.95
   }
 }

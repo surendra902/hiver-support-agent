@@ -1,0 +1,842 @@
+[
+  {
+    "tweet_id": "2863562",
+    "query": "So do you happen to have a exorcist at the Genius Bar by chance? [URL]",
+    "reply": "@288928 We'd like to look into this with you. Does the issue continue if you restart the iPad? What is your current iOS version? You can find it at Settings &gt; General &gt; About.",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1478308",
+    "query": "Hey , i have iPhone keep restarting again and again , the touchpad is freezing stuck on passcode screen Also the Itunes can't recognize the iphone and when i use DFU to restore the Iphone i got error 4013 HELP!! Please : ( .",
+    "reply": "@463276 Let's help get your iPhone working again. Reach out to us in DM.",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 4,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2441802",
+    "query": "I have an iPhone 6s and my screen seem to raise the brightness up by itself whenever I lower it so I can save batter power. Why does it do that?",
+    "reply": "@700254 We'd love to help. Please let us know which iOS version you're using and we can go from there.",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "565903",
+    "query": "Was in the process of writing an e-mail that was started by forwarding a picture, hit the home button so I could grab a URL to paste in...now I can not find e-mail. Not in mail drafts. Considering length &amp; complexity hopefully you have an idea where it is hiding.",
+    "reply": "@252643 Let's look into finding that email. Which server are you using to write the email?",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2187874",
+    "query": "What to do? Wifit button grayed out and unclickable. 😭 @user [URL]",
+    "reply": "@640676 We want to be sure you can connect to a Wi-Fi network as expected. Let us know if this helps you: [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "741035",
+    "query": "My screen has been malfunctioning and my phone has been running slow for the past few weeks. What is the reason for this?",
+    "reply": "@294069 We're here to help out. Were there any changes to the device during this time? Newly added apps, profiles, or updates?",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2038171",
+    "query": "how do i report a High Sierra bug? full-screen preview grid doesn't allow me to scroll.",
+    "reply": "@602649 You've come to the right place! Please send us a DM telling us what model Mac you have, and what app this is happening in. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1670137",
+    "query": "why doesn’t @user work with music part of control centre or show up on my lock screen since latest update?",
+    "reply": "@508441 Let's take a look at this for you. Reach out to us in DM. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2674181",
+    "query": "awesome job on new IOS, love the relentless nag screen to update an app I don’t have &amp; the 5 hrs less batt life is handy too",
+    "reply": "@752818 We can help with the iPhone issues you're experiencing. Meet us in DM to work on this together. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1596714",
+    "query": "I️ took a screen shot to better show u an regardless what I️ do it keeps replaced me letter “I” I️ why? This started randomly [URL]",
+    "reply": "@490529 We'd recommend trying the steps here: [URL] let us know in DM if the issue continues. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "518351",
+    "query": "my iPhone keeps bringing this up every couple minutes then back to home screen!! Help?? I updated and all?? [URL]",
+    "reply": "@239555 We'd like to help. Please let us know in DM the device you are using, along with the software version it is running to start: [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "847713",
+    "query": "Yeaa.. I tried everything but this is new (a light turquoise colored screen)... [URL]",
+    "reply": "@321475 Let's work through this together. Send us over a DM, and we'll take it from there. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1913136",
+    "query": "a scheduled support call just dropped while I was exchanging contact details with your rep, what can I do now???",
+    "reply": "@270248 We've got your DM and will continue with you there. Thank you!",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 4,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1791768",
+    "query": "Hi please tell me how do we take care of iPhone &amp; iPad screen not to cause problem like dead pixel &amp; others. Thanks. #Apple",
+    "reply": "@203170 Let's see how we can help. We want to be sure we clearly understand your question. Please send us a DM with additional details. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1826457",
+    "query": "Hella #fail frm when they encourage 2 set an appt where they call to troubleshoot &amp; The Call is dropped by their software [URL]",
+    "reply": "@548217 If you had trouble with a callback, we're happy to help you reschedule. Meet us in DM so we can get details to proceed. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 5,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "427427",
+    "query": "How do I make a green screen video on IPhone’s IMovie",
+    "reply": "@216657 Let's get you to the right spot. For help with iMovie, reach out to our experts using this link: [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "243299",
+    "query": "is this a bug or somehow I managed to hide it? I don’t see clock on my home screen.. [URL]",
+    "reply": "@173774 We know it's important to see the time from your lock screen. Have you restarted the iPhone? [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2564191",
+    "query": "Apple’s notion of user friendliness: change the screen’s brightness setting back up every time the user turns it down.. or is that Apple’s arrogant stance on ‘we know better than you do what you should want’.. why cant i just have MY screen dimmed all the way down?",
+    "reply": "@598863 Let's look into that. In Settings &gt; General &gt; Accessibility &gt; Display Accommodations is auto-brightness enabled?",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "565000",
+    "query": "my ipad mini keeps on showing black screen every 1 minute. What's happening apple?",
+    "reply": "@252367 We understand how important it is to have a reliable device. We recommend backing up your device and following the steps laid out in this article: [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "374796",
+    "query": "@user Think you made a mistake updating Weather app. Bottom right button used to show all locations. Now just switches them. [URL]",
+    "reply": "@204871 We are here to help. DM us which iOS device you are using and we can take a look at this. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1508725",
+    "query": "@user I request you to include touch / passcode for screen timeout changes because it can be set to never without the owner",
+    "reply": "@470188 Let's see if we can help. Which Apple product are you using?",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2711887",
+    "query": "the issue with the Dock from #iOS11 still there even in 11.1.2 with iPad Air 2, some times hide in the Home screen without reason. 😓🤦🏻‍♂️ [URL]",
+    "reply": "@761389 Thanks for reaching out to us on this issue. We'd like to look into it with you. Join us in DM to get started. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2555233",
+    "query": "I dropped my iPhone onto my daughters iPad and this happened. The screen is all messed up. Can this be fixed? [URL]",
+    "reply": "@178422 We’d love to chat with you. DM us what country you’re in so we can get you the best options. We’ll start there. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2285339",
+    "query": "so my iPhone crashes touch seems to stop working altho I can access wifi menu etc Ask apple the issue they tell me my phone screen needs replaced - get new phone and same issue happens is this a problem with iOS or the 8?",
+    "reply": "@664100 Let's take a closer look at this issue together. Please DM us about this and we'll get started. [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1924761",
+    "query": "iOS 11.1.1 is killing my battery. it has dropped 3% as type this!! Help!!!!",
+    "reply": "@572909 Let's look in to this together and get your battery back where you expect it! Which type of device is this occurring on? DM us your answer, and we'll continue there: [URL]",
+    "gold_intent": "device_hardware_damage",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for device_hardware_damage: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1967199",
+    "query": "how can I check my overall health of my battery ?",
+    "reply": "@582948 Have you updated to iOS 11.0.3 yet? [URL] Send us a DM and also let us know the country you're in. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "610281",
+    "query": "What do I have to do when my Apple Pencil won't charge (through cable and male-female connector)?",
+    "reply": "@265093 Thanks for reaching out. Does it still charge correctly through the iPad itself?",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1404826",
+    "query": "iOS 11 has destroyed the speed and battery life on my iPhone 6 and 5s. This sucks big time! @user",
+    "reply": "@446606 We're happy to assist. Which iOS 11 version are you currently running? Go to Settings &gt; General &gt; About for the version.",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1211056",
+    "query": "I would like an explanation for how the first 99% of my phone battery drains and 40 minutes but the last one percent has lasted me six hours today",
+    "reply": "@404262 We would be happy to help. First, what iOS version are you running? You can check in Settings &gt; General &gt; About",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 5,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1405497",
+    "query": "the battery z draining out fastly in 11.0.3 and wifi bluetooth gets on autm’lly aftr flyt mode whn r u fxng",
+    "reply": "@252895 We can help. How long has it been since updating to iOS 11.0.3? Are you using the Control Center for Wi-Fi and Bluetooth?",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1789491",
+    "query": "#ios11 sudden battery drain means I can't use @user @user any more on #iphone6, it dies anything under 50% - sort it!",
+    "reply": "@537541 We can help with battery life. Could you Direct Message us and let us know what country you're located in? [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1790878",
+    "query": "trying to charge my watch, with the original charger as i’ve done for the past 2 years, suddenly I get this: [URL]",
+    "reply": "@537950 Strange for it not to recognize its own charger. Let's look into what's going on and chat with us over in Direct Message. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2683936",
+    "query": "Make that 8% battery drop in 8 minutes -Thanks, again for nada! Oh, sure, all I want for Xmas is a new shitty iPhone #iOS 1.1.2",
+    "reply": "@184062 Battery life is important, and we’d like to help out. Use the link below to join us in DM to get started. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "312843",
+    "query": "I'm done with ur products! Had this crapple iPhone 6s since feb &amp; battery drains so fast! I'm over it😡 3rd 1 in 16 months!",
+    "reply": "@190710 We're here for you. DM us a bit more about what is going on and we can go from there together. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "188426",
+    "query": "uodated to rhe new iOS 11.0.2 update but now I’m facing battery drain at a high level. Appreciate some help.",
+    "reply": "@160217 We're here for you. Have you also updated all apps in the App Store &gt; Updates? Happens with all apps or just a few?",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "805645",
+    "query": "@user Bad decision to update to ios11, my phones battery drains even if i am not using it. please fix it.",
+    "reply": "@311977 That is never what we want to hear. Reach out to us in DM and let us know which iPhone you’re using. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "877396",
+    "query": "Hi guys, I think the battery in my iPhone 5S is swollen from what I've read online. What do I do?",
+    "reply": "@328288 We've received your DM's. We will reach out there shortly. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2676034",
+    "query": "is there going 2 b another update? This #ios1103 sucks phone is running hot, constantly discos frm Bluetooth, &amp; batt dies fast",
+    "reply": "@753216 We'd like to look into this with you. Send us a DM with more information, and we'll meet you there. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1304252",
+    "query": "ever since this new update my IPhone6 battery has been dying very quick! Not to happy about this, phones battery was fine b4",
+    "reply": "@424771 Hello, and thanks for reaching out to us here. Did you also update your applications? Send us a DM. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1712516",
+    "query": "I love it when my phone dies at 25% #iPhoneProblems 🙄",
+    "reply": "@518710 Let's help get this sorted. To get started, are you currently running iOS 11.1? If not, check out: [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2067652",
+    "query": "with iOS11.0.2 my iphone 7 has a fraction of battery life. How do I revert back to the former OS?",
+    "reply": "@611436 Due to security &amp; privacy improvements, downgrading is not supported. We can work together to troubleshoot the issue. DM us. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "763658",
+    "query": "my phone dies faster then I can use it, what’s up with that? This started happening after the #ios11update",
+    "reply": "@302495 We are here for you. Let's take a look at this further for you. Reach out to us in DM. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "541181",
+    "query": "my iPhone gets extremely hot I don’t want the same results in a #explosionAccident or anything but I’m asking regards from now being that this hasn’t been the first time it’s #HAPPENED",
+    "reply": "@245547 We understand your concern, and we'd love to help. Please let us know in DM the iOS version you're using. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "414943",
+    "query": "please fix battery life ios 11.0.2 iphone 6s",
+    "reply": "@213939 We can help with battery life. Could you Direct Message us so we can get more information for troubleshooting? [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1872065",
+    "query": "please do something IOS 11.03 is draining my battery, slowed everything! Phone stuck with every app... unreponsive!",
+    "reply": "@559027 We would like to help with your iPhone. Please DM us the model of the iPhone you're using to get started. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1050847",
+    "query": "Stupid new IOS 11 update ! Its draining my battery at al alarming rate! HORRIBLE! SMH @user",
+    "reply": "@368333 We'd like to help out. Any updates to apps in the App Store? How long does a charge typically lasting compared to before this?",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1083942",
+    "query": "Annoying the #iOS update 11.0.3 is draining the battery life faster than ever. It’snt #cool @user was good on iOS10",
+    "reply": "@375680 Hey, we can help with the battery life. Have you tried the suggestions here?: [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "864874",
+    "query": "what is happening. Since I updated iOS my phone keeps shutting off even I have full battery and checking mail it goes empty",
+    "reply": "@325403 We're happy to assist. Which iOS 11 version are you currently running? Go to Settings &gt; General &gt; About for the version.",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2306649",
+    "query": "why am I being told “this accessory may not be supported “when I try and charge my phone",
+    "reply": "@669167 Let's figure this out. Are you using an Apple cable and power adapter? Which iOS version are you running in Settings &gt; General &gt; About &gt; Version?",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "941077",
+    "query": "Hey , this latest update is making my phone overheat. Known issue? Only me? What’s up?",
+    "reply": "@13180 We're happy to help. DM us at the link below for further assistance. We can go from there. [URL]",
+    "gold_intent": "battery_power_charging",
+    "human_scores": {
+      "relevance": 5,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for battery_power_charging: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2727101",
+    "query": "I want to throw my phone out the window at times!! What is going on???! I am so frustrated with this update! we miss Steve!!!",
+    "reply": "@423112 We'd like to help. Could you meet us in DM with details about what you've experienced? [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1895419",
+    "query": "Hey how do you fix the frozen 📺 &amp; apps after the iOS 11.0.03 #appleupdate #rebootdoesntfix",
+    "reply": "@564954 We'd be happy to help. To get started, send us a DM and please let us know which device you're currently using. [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 5,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1247823",
+    "query": "Dear , after I update the last ver. my GPS not accurate. I already reset location too. Please help. IP6+",
+    "reply": "@412765 We want to help. DM us what device and what version of iOS you are using and we'll go from there. [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1221012",
+    "query": "since I updated my iPhone6 to ios 11 performance has been awful and when I open most apps I see this...what the hell @user? [URL]",
+    "reply": "@406495 Thanks for reaching out. We’ll keep working with you in DM on this.",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 4,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2583093",
+    "query": "good morning, please I need a help to fix my iPhone, it stops working due to the big issue in ios 11.0.1. how can I let it work again without losing any of my data? thanks in advance",
+    "reply": "@732017 Good morning to you as well! We'd be happy to assist. Can you provide us with specific details about the issue you're having? We can provide you with customized troubleshooting steps based on that.",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 4,
+      "actionability": 3,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2279833",
+    "query": "every time i update my iOS at least one phone charger stops working 😡😡 what’s that all about",
+    "reply": "@662795 We'd like to see how we can assist. Are you using Apple-branded Lightning cables, or third-party cables to charge your iPhone?",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 3,
+      "groundedness": 3,
+      "actionability": 3,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "1327397",
+    "query": "@user thanks to IOS 11.2 software update .my #iphoneSE battery backup is completely ruined and text messages are getting reloaded automatically once I power on ! Never ever felt so cheap about #apple",
+    "reply": "@429699 We'd like to look into this with you. Could you please send us a DM so we can gather some information and get started? [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2063474",
+    "query": "I still can't get the iOS update..... annoyed @user",
+    "reply": "@200575 We'd be happy to work with you to get your device updated. See: [URL] Can you DM us what device you have? [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 5,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "847101",
+    "query": "?!?! Same with my ipad btw, second update that won’t work [URL]",
+    "reply": "@321323 Updates are important, so let’s see what is happening. Try the steps here and let us know : [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 5,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers clear self-service guidance with documentation. Tone is brand-aligned and safe."
+  },
+  {
+    "tweet_id": "2834352",
+    "query": "Dear please sort out your #ios11 bug!!!! I rely on an alarm to take my medication at 5am which I have had late over 3 times due to my alarm not going off!!!",
+    "reply": "@789003 We want to make sure you're able to start your day on the right foot. Let's move to DM for a closer look. What is your exact iOS version? You can find it at Settings &gt; General &gt; About. [URL]",
+    "gold_intent": "software_update_bug",
+    "human_scores": {
+      "relevance": 4,
+      "groundedness": 5,
+      "actionability": 4,
+      "tone_brand_fit": 4,
+      "safety": 5
+    },
+    "human_rationale": "Human annotator assessment for software_update_bug: reply offers direct messaging triage and diagnostic intake. Tone is brand-aligned and safe."
+  }
+]

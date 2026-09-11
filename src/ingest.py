@@ -21,8 +21,8 @@ def find_twcs_csv(raw_dir: str = "data/raw") -> Optional[str]:
     
     # Check kagglehub cache
     home = os.path.expanduser("~")
-    kaggle_pattern = os.path.join(home, ".cache", "kagglehub", "datasets", "thoughtvector", "customer-support-on-twitter", "*", "twcs.csv")
-    matches = glob.glob(kaggle_pattern)
+    kaggle_pattern = os.path.join(home, ".cache", "kagglehub", "datasets", "thoughtvector", "customer-support-on-twitter", "**", "twcs.csv")
+    matches = glob.glob(kaggle_pattern, recursive=True)
     if matches:
         return matches[0]
     

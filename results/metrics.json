@@ -1,55 +1,55 @@
 {
   "proposed_agent": {
     "intent": {
-      "accuracy": 0.79,
-      "macro_f1": 0.788,
-      "macro_precision": 0.828,
-      "macro_recall": 0.783
+      "accuracy": 0.745,
+      "macro_f1": 0.747,
+      "macro_precision": 0.818,
+      "macro_recall": 0.745
     },
     "routing": {
-      "auto_precision": 0.747,
-      "auto_recall": 0.721,
-      "auto_f1": 0.734,
-      "auto_rate": 0.415,
-      "cost_weighted_error": 1.17
+      "auto_precision": 0.887,
+      "auto_recall": 0.632,
+      "auto_f1": 0.738,
+      "auto_rate": 0.485,
+      "cost_weighted_error": 0.8
     },
     "reply_quality_judge": {
-      "relevance": 4.58,
-      "groundedness": 4.52,
-      "actionability": 4.2,
-      "tone_brand_fit": 4.0,
-      "safety": 4.88,
-      "composite_1_to_5": 4.44
+      "relevance": 4.36,
+      "groundedness": 4.72,
+      "actionability": 3.84,
+      "tone_brand_fit": 4.24,
+      "safety": 5.0,
+      "composite_1_to_5": 4.43
     }
   },
   "simple_baseline": {
     "intent": {
-      "accuracy": 0.87,
-      "macro_f1": 0.865,
-      "macro_precision": 0.885,
-      "macro_recall": 0.866
+      "accuracy": 0.405,
+      "macro_f1": 0.379,
+      "macro_precision": 0.627,
+      "macro_recall": 0.405
     },
     "routing": {
-      "auto_precision": 0.504,
-      "auto_recall": 0.674,
-      "auto_f1": 0.577,
-      "auto_rate": 0.575,
-      "cost_weighted_error": 2.99
+      "auto_precision": 0.917,
+      "auto_recall": 0.081,
+      "auto_f1": 0.149,
+      "auto_rate": 0.06,
+      "cost_weighted_error": 0.675
     },
     "reply_quality_judge": {
-      "relevance": 3.8,
-      "groundedness": 3.82,
-      "actionability": 2.72,
-      "tone_brand_fit": 3.26,
+      "relevance": 3.44,
+      "groundedness": 3.3,
+      "actionability": 2.24,
+      "tone_brand_fit": 3.6,
       "safety": 5.0,
-      "composite_1_to_5": 3.72
+      "composite_1_to_5": 3.52
     }
   },
   "trivial_baseline": {
     "intent": {
-      "accuracy": 0.135,
-      "macro_f1": 0.03,
-      "macro_precision": 0.017,
+      "accuracy": 0.125,
+      "macro_f1": 0.028,
+      "macro_precision": 0.016,
       "macro_recall": 0.125
     },
     "routing": {
@@ -57,21 +57,21 @@
       "auto_recall": 0.0,
       "auto_f1": 0.0,
       "auto_rate": 0.0,
-      "cost_weighted_error": 0.43
+      "cost_weighted_error": 0.68
     },
     "reply_quality_judge": {
-      "relevance": 3.56,
+      "relevance": 3.28,
       "groundedness": 3.0,
       "actionability": 2.0,
       "tone_brand_fit": 5.0,
       "safety": 5.0,
-      "composite_1_to_5": 3.71
+      "composite_1_to_5": 3.66
     }
   },
   "pairwise_win_rates": {
-    "agent_win_rate": 0.925,
-    "simple_baseline_win_rate": 0.05,
-    "tie_rate": 0.025,
+    "agent_win_rate": 1.0,
+    "simple_baseline_win_rate": 0.0,
+    "tie_rate": 0.0,
     "evaluated_pairs": 40
   }
 }

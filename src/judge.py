@@ -3,6 +3,12 @@ import json
 import logging
 import warnings
 from typing import Dict, Any, Tuple, List, Optional
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 import numpy as np
 from scipy.stats import spearmanr
 from sklearn.metrics import cohen_kappa_score

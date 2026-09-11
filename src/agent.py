@@ -1,9 +1,16 @@
 import os
+import re
 import json
 import time
 import hashlib
 import logging
 from typing import Optional, Dict, Any, List
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from src.schemas import (
     IntentType, RouteAction, IntentClassificationResult,
@@ -19,7 +26,8 @@ logger = logging.getLogger(__name__)
 HARD_ESCALATE_KEYWORDS = [
     "refund", "unauthorized charge", "fraud", "stolen", "stole", "lawyer",
     "attorney", "lawsuit", "sue", "legal action", "compromised", "hacked",
-    "police", "dispute charge", "death", "emergency"
+    "police", "dispute charge", "death", "emergency", "fire", "spark", "sparked",
+    "smoke", "exploded", "explosion"
 ]
 
 
@@ -587,7 +595,7 @@ class SupportAgent:
 
         # Hard Guardrail 1: High-risk keywords
         for kw in HARD_ESCALATE_KEYWORDS:
-            if kw in q_lower:
+            if re.search(r'\b' + re.escape(kw) + r'\b', q_lower):
                 return RouteDecision(
                     action=RouteAction.ESCALATE,
                     stated_reason=f"Hard guardrail triggered: query contains high-risk keyword '{kw}' requiring human oversight.",
